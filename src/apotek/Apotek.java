@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package apotek;
+import java.sql.SQLException;
+import model.model_login;
 
 /**
  *
@@ -14,9 +16,11 @@ public class Apotek {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-                login frame = new login();
-                frame.setVisible(true);
+    public static void main(String[] args)throws SQLException {
+                viewKasir.login loginn =new viewKasir.login();
+                model.model_login modell = new model_login();
+                control.user controll = new control.user(loginn,modell);
+                
     }
     
 }
