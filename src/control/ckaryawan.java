@@ -30,7 +30,7 @@ public class ckaryawan {
         this.menuu = menuu;
         this.modell = modell;
 
-//        menuu.setTabel(modell.getTableObatUmum());
+        menuu.setTabel(modell.getTableObatUmum());
         menuu.obatListener(new obatListener());
         menuu.buttonUbah(false);
         menuu.buttonHapus(false);
@@ -46,9 +46,9 @@ public class ckaryawan {
         menuu.setVisible(true);
         menuu.showCard("dataObat");
 
-//        setObatUmum();
+        resetObatUmum();
         menuu.simpan().addActionListener(new simpanObatUmum());
-        menuu.tambahObatUmum().addActionListener(new getTambahObatUmum());
+        menuu.tambahObatUmum().addActionListener(new tambahObatUmum());
 
     }
 
@@ -74,25 +74,16 @@ public class ckaryawan {
         }
     }
     
-    private class getTambahObatUmum implements ActionListener {
-
-        public getTambahObatUmum() {
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuu.showCard("tb_ObatUmum");
-        }
-    }
 
 //    public void setObatUmum() {
 //        DefaultTableModel model = new DefaultTableModel();
 //        Object[] columnsName = new Object[8];
 //
-//        columnsName[0] = "No.";
-//        columnsName[1] = "Kode";
-//        columnsName[2] = "Nama Obat";
-//        columnsName[3] = "Satuan";
+////        columnsName[0] = "No.";
+//        columnsName[0] = "Kode";
+//        columnsName[1] = "Nama Obat";
+//        columnsName[2] = "Satuan";
+//        columnsName[3] = "Isi";
 //        columnsName[4] = "Stok";
 //        columnsName[5] = "Harga Beli";
 //        columnsName[6] = "Harga Satuan";
@@ -103,14 +94,15 @@ public class ckaryawan {
 //        Object[] rowData = new Object[8];
 //
 //        for (int i = 0; i < modell.getObatUmum().size(); i++) {
-//            rowData[0] = modell.getObatUmum().get(i).getId_Obat();
-//            rowData[1] = modell.getObatUmum().get(i).getKodeObat();
-//            rowData[2] = modell.getObatUmum().get(i).getNamaObat();
-//            rowData[3] = modell.getObatUmum().get(i).getSatuan();
+////            rowData[0] = modell.getObatUmum().get(i).getId_Obat();
+//            rowData[0] = modell.getObatUmum().get(i).getkodeobat();
+//            rowData[1] = modell.getObatUmum().get(i).getnamaobat();
+//            rowData[2] = modell.getObatUmum().get(i).getSatuan();
+//            rowData[3] = modell.getObatUmum().get(i).getIsi();
 //            rowData[4] = modell.getObatUmum().get(i).getStok();
-//            rowData[5] = modell.getObatUmum().get(i).getHargaBeli();
-//            rowData[6] = modell.getObatUmum().get(i).getHargaSatuan();
-//            rowData[7] = modell.getObatUmum().get(i).getHargaBox();
+//            rowData[5] = modell.getObatUmum().get(i).gethargabeli();
+//            rowData[6] = modell.getObatUmum().get(i).gethargasatuan();
+//            rowData[7] = modell.getObatUmum().get(i).gethargabox();
 //            
 //            System.out.println(rowData[0]);
 //
@@ -137,11 +129,47 @@ public class ckaryawan {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+//ranggi
+//            String kodeObat = menuu.getKode();
+//            String namaObat = menuu.getNamaObat();
+//            String satuan = menuu.getSatuan().getSelectedItem().toString();
+//            int isi = Integer.parseInt(menuu.getIsi());
+//            int stok = Integer.parseInt(menuu.getStok());
+//            int hargaBeli = Integer.parseInt(menuu.getHargaBeli());
+//            int hargaSatuan = Integer.parseInt(menuu.getHargaSatuan());
+//            int hargaBox = Integer.parseInt(menuu.getHargaBox());
+//            
+////                if (menuu.getKode().equalsIgnoreCase("")
+////                        || menuu.getNamaObat().equalsIgnoreCase("")
+////                        || menuu.getSatuan().getSelectedItem().toString().equalsIgnoreCase("")
+////                        || menuu.getIsi().equalsIgnoreCase("")
+////                        || menuu.getStok().equalsIgnoreCase("")
+////                        || menuu.getHargaBeli().equalsIgnoreCase("")
+////                        || menuu.getHargaSatuan().equalsIgnoreCase("")
+////                        || menuu.getHargaBox().equalsIgnoreCase("")) {
+////                    JOptionPane.showMessageDialog(menuu, "Data tidak boleh ada yang kosong!!!");
+////                }
+//            if (kodeObat.trim().isEmpty() || namaObat.trim().isEmpty()) {
+//                JOptionPane.showMessageDialog(menuu, "Lengkapi data");
+//            }
+//                else {
+//                if (modell.insertObatUmum(kodeObat, namaObat, satuan, isi, stok, hargaBeli, hargaSatuan, hargaBox)) {
+//                    JOptionPane.showMessageDialog(menuu, "Data berhasil ditambahkan");
+//
+//                    menuu.showCard("dataObat");
+////                    setObatUmum();
+//
+//                } else {
+//                    JOptionPane.showMessageDialog(menuu, "Data gagal ditambahkan");
+//                }
+//            }
+        
+  
                         System.out.println("bisakok");
+//bagas
             try {
                 if (menuu.getKode().equalsIgnoreCase("")
                         || menuu.getNamaObat().equalsIgnoreCase("")
-                        || menuu.getSatuan().getSelectedItem().toString().equalsIgnoreCase("")
                         || menuu.getIsi().equalsIgnoreCase("")
                         || menuu.getStok().equalsIgnoreCase("")
                         || menuu.getHargaBeli().equalsIgnoreCase("")
@@ -150,49 +178,26 @@ public class ckaryawan {
                     JOptionPane.showMessageDialog(menuu, "Data tidak boleh ada yang kosong!!!");
                 } else {
                     int satuan = 0;
-                    if (menuu.getSatuan().equals("Botol")) {
+                    if (menuu.getSatuan().getSelectedItem().toString().equalsIgnoreCase("Tablet")) {
                         satuan = 1;
-                    } else if (menuu.getSatuan().equals("Tablet")) {
+                    } else if (menuu.getSatuan().getSelectedItem().toString().equalsIgnoreCase("Botol")) {
                         satuan = 2;
                     } else {
                         satuan = 3;
                     }
 
-                    modell.simpan("public.buku(Id_Obat, kodeObat, namaObat, isi, stok, hargaBeli, hargaSatuan, hargaBox, id_Satuan, \"tb_users\")"
-                            + " VALUES (default, ' " + menuu.getKode() + "', '"
-                            + menuu.getNamaObat() + "', '" + menuu.getIsi() + "','" + menuu.getStok() + "', '"
-                            + menuu.getHargaBeli() + "', " + menuu.getHargaSatuan() + ", '"
-                            + menuu.getHargaBox() + "', " + satuan + ", " + user.getIdLogin() + ")");
+                    modell.simpan("public.dataobat(id_obat, kodeobat, namaobat, satuan, isi, stok, hargabeli, hargasatuan,hargabox)"
+                            + " VALUES (DEFAULT, ' " + menuu.getKode() + "', ' " + menuu.getNamaObat() + "', " + satuan + ", ' " +menuu.getIsi() + "', ' "
+                            + menuu.getStok() + "', ' "+ menuu.getHargaBeli() + "', ' " + menuu.getHargaSatuan() + "',' " + menuu.getHargaBox() + "' )");
                     menuu.setTabel(modell.getTableObatUmum());
                     JOptionPane.showMessageDialog(menuu, "data berhasil disimpan");
+                    resetObatUmum();
                     menuu.showCard("dataObat");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ckaryawan.class.getName()).log(Level.SEVERE, null, ex);
             }
-//            String kodeObat = menuu.getKode();
-//            String namaObat = menuu.getNamaObat();
-//            String satuan = menuu.getSatuan().getSelectedItem().toString();
-//            String stok = menuu.getStok();
-//            String hargaBeli = menuu.getHargaBeli();
-//            String hargaSatuan = menuu.getHargaSatuan();
-//            String hargaBox = menuu.getHargaBeli();
-//            
-//            if (kode_matakuliah.trim().isEmpty() || nama_matakuliah.trim().isEmpty()) {
-//                JOptionPane.showMessageDialog(menuu, "Lengkapi data");
-//            } else {
-//                if (modell.insertObatUmum(kodeObat, namaObat, satuan, 0, 0, 0, 0))) {
-//                    JOptionPane.showMessageDialog(menuu, "Data berhasil ditambahkan");
-//
-//                    menuu.showCard("dataObat");
-//                    setObatUmum();
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(menuu, "Data gagal ditambahkan");
-//                }
-//            }
-//        
-//        
+      
         }
     }
 

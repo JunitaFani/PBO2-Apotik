@@ -64,6 +64,7 @@ public class menu extends javax.swing.JFrame {
         tambah = new javax.swing.JButton();
         ubah = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabel2 = new javax.swing.JTable();
@@ -83,13 +84,13 @@ public class menu extends javax.swing.JFrame {
         batal = new javax.swing.JButton();
         simpan = new javax.swing.JButton();
         isi = new javax.swing.JTextField();
-        nama = new javax.swing.JTextField();
+        namaobat = new javax.swing.JTextField();
         stok = new javax.swing.JTextField();
-        hargaBeli = new javax.swing.JTextField();
+        hargabeli = new javax.swing.JTextField();
         hargasatuan = new javax.swing.JTextField();
-        hargaBox = new javax.swing.JTextField();
+        hargabox = new javax.swing.JTextField();
         satuan = new javax.swing.JComboBox<>();
-        kode = new javax.swing.JTextField();
+        kodeobat = new javax.swing.JTextField();
         background2 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         b_menu = new javax.swing.JLabel();
@@ -202,37 +203,37 @@ public class menu extends javax.swing.JFrame {
         tabelUmum.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tabelUmum.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Kode", "Nama Obat", "Satuan", "Isi", "Stok", "Harga Beli", "Harga Satuan", "Harga Box"
+                "Kode", "Nama Obat", "Satuan", "Isi", "Stok", "Harga Beli", "Harga Satuan", "Harga Box"
             }
         ));
         tabelUmum.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -276,6 +277,9 @@ public class menu extends javax.swing.JFrame {
             }
         });
         obatUmum.add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(1198, 9, -1, 50));
+
+        jButton1.setText("Pilih");
+        obatUmum.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/layer obat.png"))); // NOI18N
         obatUmum.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 540));
@@ -431,7 +435,7 @@ public class menu extends javax.swing.JFrame {
                 batalActionPerformed(evt);
             }
         });
-        tb_ObatUmum.add(batal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 490, 140, -1));
+        tb_ObatUmum.add(batal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1179, 473, 140, -1));
 
         simpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pelanggan/simpan.png"))); // NOI18N
         simpan.setBorder(null);
@@ -442,7 +446,7 @@ public class menu extends javax.swing.JFrame {
                 simpanActionPerformed(evt);
             }
         });
-        tb_ObatUmum.add(simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 490, 140, -1));
+        tb_ObatUmum.add(simpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(997, 472, 140, -1));
 
         isi.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         isi.setBorder(null);
@@ -453,9 +457,9 @@ public class menu extends javax.swing.JFrame {
         });
         tb_ObatUmum.add(isi, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 233, 410, 38));
 
-        nama.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        nama.setBorder(null);
-        tb_ObatUmum.add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 105, 409, 38));
+        namaobat.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        namaobat.setBorder(null);
+        tb_ObatUmum.add(namaobat, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 105, 409, 38));
 
         stok.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         stok.setBorder(null);
@@ -466,14 +470,14 @@ public class menu extends javax.swing.JFrame {
         });
         tb_ObatUmum.add(stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 296, 410, 38));
 
-        hargaBeli.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        hargaBeli.setBorder(null);
-        hargaBeli.addKeyListener(new java.awt.event.KeyAdapter() {
+        hargabeli.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        hargabeli.setBorder(null);
+        hargabeli.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                hargaBeliKeyTyped(evt);
+                hargabeliKeyTyped(evt);
             }
         });
-        tb_ObatUmum.add(hargaBeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 359, 410, 38));
+        tb_ObatUmum.add(hargabeli, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 359, 410, 38));
 
         hargasatuan.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         hargasatuan.setBorder(null);
@@ -484,20 +488,20 @@ public class menu extends javax.swing.JFrame {
         });
         tb_ObatUmum.add(hargasatuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 422, 410, 38));
 
-        hargaBox.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        hargaBox.setBorder(null);
-        hargaBox.addKeyListener(new java.awt.event.KeyAdapter() {
+        hargabox.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        hargabox.setBorder(null);
+        hargabox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                hargaBoxKeyTyped(evt);
+                hargaboxKeyTyped(evt);
             }
         });
-        tb_ObatUmum.add(hargaBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 486, 410, 38));
+        tb_ObatUmum.add(hargabox, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 486, 410, 38));
 
         satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol" }));
         tb_ObatUmum.add(satuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 410, 38));
 
-        kode.setBorder(null);
-        tb_ObatUmum.add(kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 39, 408, 38));
+        kodeobat.setBorder(null);
+        tb_ObatUmum.add(kodeobat, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 39, 408, 38));
 
         background2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/tambahObat_1.png"))); // NOI18N
         tb_ObatUmum.add(background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, -1));
@@ -544,7 +548,7 @@ public class menu extends javax.swing.JFrame {
     public JTable getTabelObatUmum() {
         return tabelUmum;
     }
-    public int getBaris() {
+    public int getBarisObatUmum() {
         return tabelUmum.getSelectedRow();
     }
     public void setTabel(DefaultTableModel tabel) {
@@ -659,49 +663,52 @@ public class menu extends javax.swing.JFrame {
         return batal;
     }
     public String getNamaObat() {
-        return nama.getText();
+        return namaobat.getText();
     }
     public JComboBox getSatuan() {
         return satuan;
     }
     public String getStok() {
-        return nama.getText();
+        return stok.getText();
     }
     public String getIsi() {
         return isi.getText();
     }
     public String getHargaBeli() {
-        return hargaBeli.getText();
+        return hargabeli.getText();
     }
     public String getHargaBox() {
-        return hargaBox.getText();
+        return hargabox.getText();
     }
     public String getHargaSatuan() {
         return hargasatuan.getText();
     }
     public String getKode() {
-        return kode.getText();
+        return kodeobat.getText();
     }
     public void setKode(String value) {
-        this.kode.setText(value);
+        this.kodeobat.setText(value);
     }
     public void setIsi(String value) {
         this.isi.setText(value);
     }
     public void setNama(String value) {
-        this.nama.setText(value);
+        this.namaobat.setText(value);
     }
     public void setStok(String value) {
         this.stok.setText(value);
     }
     public void setHargaBeli(String value) {
-        this.hargaBeli.setText(value);
+        this.hargabeli.setText(value);
     }
     public void setHargaSatuan(String value) {
         this.hargasatuan.setText(value);
     }
     public void setHargaBox(String value) {
-        this.hargaBox.setText(value);
+        this.hargabox.setText(value);
+    }
+    public String getValueAt(int baris, int kolom) {
+        return (String) this.tabelUmum.getValueAt(baris, kolom);
     }
     
     private void dataobatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataobatActionPerformed
@@ -777,17 +784,17 @@ public class menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_stokKeyTyped
 
-    private void hargaBeliKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargaBeliKeyTyped
+    private void hargabeliKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargabeliKeyTyped
    // TODO add your handling code here:
-    }//GEN-LAST:event_hargaBeliKeyTyped
+    }//GEN-LAST:event_hargabeliKeyTyped
 
     private void hargasatuanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargasatuanKeyTyped
     // TODO add your handling code here:
     }//GEN-LAST:event_hargasatuanKeyTyped
 
-    private void hargaBoxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargaBoxKeyTyped
+    private void hargaboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargaboxKeyTyped
      // TODO add your handling code here:
-    }//GEN-LAST:event_hargaBoxKeyTyped
+    }//GEN-LAST:event_hargaboxKeyTyped
 
     /**
      * @param args the command line arguments
@@ -836,22 +843,23 @@ private JPanel panel;
     private javax.swing.JButton datapelanggan;
     private javax.swing.JButton hapus;
     private javax.swing.JButton hapus2;
-    private javax.swing.JTextField hargaBeli;
-    private javax.swing.JTextField hargaBox;
+    private javax.swing.JTextField hargabeli;
+    private javax.swing.JTextField hargabox;
     private javax.swing.JTextField hargasatuan;
     private javax.swing.JTextField isi;
     private javax.swing.JPanel isiMenu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField kode;
+    private javax.swing.JTextField kodeobat;
     private javax.swing.JButton laporanobat;
     private javax.swing.JButton laporanpelanggan;
     private javax.swing.JButton logout;
     private javax.swing.JPanel menu;
-    private javax.swing.JTextField nama;
+    private javax.swing.JTextField namaobat;
     private javax.swing.JPanel obatResep;
     private javax.swing.JPanel obatUmum;
     private javax.swing.JComboBox<String> pilihan1;

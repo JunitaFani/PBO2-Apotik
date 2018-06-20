@@ -76,8 +76,8 @@ public user(login loginn, model_login modelLogin) throws SQLException {
                         model_kasir model = new model_kasir(con);
                         new ckasir(model, kasir);
                     } else if (level == 2) {
-                        viewKaryawan.menu karyawan = new viewKaryawan.menu();
-                        loginn.dispose();
+                        viewKaryawan.menu karyawan = new viewKaryawan.menu();                      
+                          loginn.dispose();
                         karyawan.setVisible(true);
                         model_karyawan model = new model_karyawan(con);
                         new ckaryawan(model, karyawan);
