@@ -31,11 +31,13 @@ public class menu extends javax.swing.JFrame {
 
         isiMenu.add("dataObat", dataObat);
         isiMenu.add("tb_ObatUmum", tb_ObatUmum);
-            }
+    }
+
     public void showCard(String key) {
         CardLayout cl = (CardLayout) (isiMenu.getLayout());
         cl.show(isiMenu, key);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,7 +66,7 @@ public class menu extends javax.swing.JFrame {
         tambah = new javax.swing.JButton();
         ubah = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        kembali = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabel2 = new javax.swing.JTable();
@@ -91,7 +93,10 @@ public class menu extends javax.swing.JFrame {
         hargabox = new javax.swing.JTextField();
         satuan = new javax.swing.JComboBox<>();
         kodeobat = new javax.swing.JTextField();
+        ubahsimpan = new javax.swing.JButton();
         background2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         b_menu = new javax.swing.JLabel();
 
@@ -278,8 +283,8 @@ public class menu extends javax.swing.JFrame {
         });
         obatUmum.add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(1198, 9, -1, 50));
 
-        jButton1.setText("Pilih");
-        obatUmum.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, -1, -1));
+        kembali.setText("kembali");
+        obatUmum.add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/layer obat.png"))); // NOI18N
         obatUmum.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 540));
@@ -497,16 +502,26 @@ public class menu extends javax.swing.JFrame {
         });
         tb_ObatUmum.add(hargabox, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 486, 410, 38));
 
-        satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tablet", "Botol" }));
         tb_ObatUmum.add(satuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 410, 38));
 
         kodeobat.setBorder(null);
         tb_ObatUmum.add(kodeobat, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 39, 408, 38));
 
+        ubahsimpan.setBorder(null);
+        ubahsimpan.setContentAreaFilled(false);
+        tb_ObatUmum.add(ubahsimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(997, 472, 140, 63));
+
         background2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/tambahObat_1.png"))); // NOI18N
         tb_ObatUmum.add(background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, -1));
 
         isiMenu.add(tb_ObatUmum, "card3");
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/lihat resep.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        isiMenu.add(jPanel1, "card4");
 
         getContentPane().add(isiMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 78, 1350, 572));
 
@@ -519,198 +534,303 @@ public class menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-     public void obatListener(ActionListener listener){
+
+    public void obatListener(ActionListener listener) {
         dataobat.addActionListener(listener);
     }
-    
-    public void pelangganListener(ActionListener listener){
+
+    public void pelangganListener(ActionListener listener) {
         datapelanggan.addActionListener(listener);
     }
-     public void laporanObatListener(ActionListener listener){
+
+    public void laporanObatListener(ActionListener listener) {
         laporanobat.addActionListener(listener);
     }
-    
-    public void laporanPelangganListener(ActionListener listener){
+
+    public void laporanPelangganListener(ActionListener listener) {
         laporanpelanggan.addActionListener(listener);
     }
-     public void profilListener(ActionListener listener){
+
+    public void profilListener(ActionListener listener) {
         profil.addActionListener(listener);
     }
-    
-    public void logoutListener(ActionListener listener){
+
+    public void logoutListener(ActionListener listener) {
         logout.addActionListener(listener);
-    } 
+    }
+
     public JButton ObatButton() {
         return dataobat;
     }
+
     //obatUmum
+    public void SearchObatUmum(ActionListener l) {
+        this.search1.addActionListener(l);
+    }
+
     public JTable getTabelObatUmum() {
         return tabelUmum;
     }
+
     public int getBarisObatUmum() {
         return tabelUmum.getSelectedRow();
     }
+
     public void setTabel(DefaultTableModel tabel) {
         this.tabelUmum.setModel(tabel);
     }
+
     public void tabelListener(MouseListener m) {
         tabelUmum.addMouseListener(m);
     }
+
     public JComboBox getPilihan1() {
         return pilihan1;
     }
+
     public void setPilihan1(String pilihan1) {
         getPilihan1().addItem(pilihan1);
     }
+
     public JTextField settxtsearch1() {
         return txt1;
     }
+
     public String gettxtsearch1() {
         return txt1.getText();
     }
-     public void TambahObatUmumListener(ActionListener e) {
+
+    public void TambahObatUmumListener(ActionListener e) {
         this.tambah.addActionListener(e);
-    }    
+    }
+
     public void UbahObatUmumListener(ActionListener e) {
         this.ubah.addActionListener(e);
-    }    
+    }
+
     public void HapusObatUmumListener(ActionListener e) {
         this.hapus.addActionListener(e);
-    }   
+    }
+
     public void searchListener(ActionListener e) {
         this.search1.addActionListener(e);
-    }     
+    }
+
+    public void kembaliListener(ActionListener l) {
+        this.kembali.addActionListener(l);
+    }
+
     public JButton tambahObatUmum() {
         return tambah;
-    }    
+    }
+
     public JButton getUbah() {
         return ubah;
-    }    
+    }
+
     public JButton getHapus() {
         return hapus;
-    }    
+    }
+
     public JButton getSearch() {
         return search1;
     }
+
     public void buttonUbah(boolean status) {
-    this.ubah.setEnabled(status);
-    }    
+        this.ubah.setEnabled(status);
+    }
+
     public void buttonHapus(boolean status) {
-    this.hapus.setEnabled(status);
+        this.hapus.setEnabled(status);
     }
+
     public void buttonTambah(boolean status) {
-    this.tambah.setEnabled(status);
+        this.tambah.setEnabled(status);
     }
-    
+
     //obat beresep
     public JTable getTabelObatBeresep() {
         return tabelResep;
     }
+
     public int getBaris2() {
         return tabelResep.getSelectedRow();
     }
+
     public void setTabel2(JTable t, DefaultTableModel tabel) {
         t.setModel(tabel);
     }
+
     public void tabelResepListener(MouseListener m) {
         tabelResep.addMouseListener(m);
     }
+
     public JComboBox getPilihan2() {
         return pilihan2;
     }
+
     public void setPilihan2(String pilihan1) {
         getPilihan2().addItem(pilihan1);
     }
+
     public JTextField settxtsearch2() {
         return txt2;
     }
+
     public String gettxtsearch2() {
         return txt2.getText();
     }
-     public void Tambah2Listener(ActionListener e) {
+
+    public void Tambah2Listener(ActionListener e) {
         this.tambah2.addActionListener(e);
-    }    
+    }
+
     public void Ubah2Listener(ActionListener e) {
         this.ubah2.addActionListener(e);
-    }    
+    }
+
     public void Hapus2Listener(ActionListener e) {
         this.hapus2.addActionListener(e);
-    }   
+    }
+
     public void search2Listener(ActionListener e) {
         this.search2.addActionListener(e);
-    }     
+    }
+
     public JButton getTambah2() {
         return tambah2;
-    }    
+    }
+
     public JButton getUbah2() {
         return ubah2;
-    }    
+    }
+
     public JButton getHapus2() {
         return hapus2;
-    }    
+    }
+
     public JButton getSearch2() {
         return search2;
-    } 
+    }
+
     //tambah obat umum
-    public void simpanObatUmum(ActionListener e){
+    public void simpanObatUmum(ActionListener e) {
         this.simpan.addActionListener(e);
     }
+
     public JButton simpan() {
         return simpan;
     }
+
     public JButton batal() {
         return batal;
     }
+
     public String getNamaObat() {
         return namaobat.getText();
     }
+
     public JComboBox getSatuan() {
         return satuan;
     }
+
+    public void setSatuan(String satuan) {
+        getSatuan().addItem(satuan);
+    }
+
+    public void setComboBox_Satuan(String[] satuan) {
+        for (String a : satuan) {
+            this.satuan.addItem(a);
+        }
+    }
+
     public String getStok() {
         return stok.getText();
     }
+
     public String getIsi() {
         return isi.getText();
     }
+
     public String getHargaBeli() {
         return hargabeli.getText();
     }
+
     public String getHargaBox() {
         return hargabox.getText();
     }
+
     public String getHargaSatuan() {
         return hargasatuan.getText();
     }
+
     public String getKode() {
         return kodeobat.getText();
     }
+
+    public JTextField setkodeObat() {
+        return kodeobat;
+    }
+
+    public JTextField setNamaObat() {
+        return namaobat;
+    }
+
+    public JTextField setIsi() {
+        return isi;
+    }
+
+    public JTextField setStok() {
+        return stok;
+    }
+
+    public JTextField setHargaBeli() {
+        return hargabeli;
+    }
+
+    public JTextField setHargaSatuan() {
+        return hargasatuan;
+    }
+
+    public JTextField setHargaBox() {
+        return hargabox;
+    }
+
     public void setKode(String value) {
         this.kodeobat.setText(value);
     }
+
     public void setIsi(String value) {
         this.isi.setText(value);
     }
+
     public void setNama(String value) {
         this.namaobat.setText(value);
     }
+
     public void setStok(String value) {
         this.stok.setText(value);
     }
+
     public void setHargaBeli(String value) {
         this.hargabeli.setText(value);
     }
+
     public void setHargaSatuan(String value) {
         this.hargasatuan.setText(value);
     }
+
     public void setHargaBox(String value) {
         this.hargabox.setText(value);
     }
+
     public String getValueAt(int baris, int kolom) {
         return (String) this.tabelUmum.getValueAt(baris, kolom);
     }
-    
+
+    public JButton ubahSimpan() {
+        return ubahsimpan;
+    }
     private void dataobatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataobatActionPerformed
         CardLayout cl = (CardLayout) (isiMenu.getLayout());
         cl.show(isiMenu, "");
@@ -785,15 +905,15 @@ public class menu extends javax.swing.JFrame {
     }//GEN-LAST:event_stokKeyTyped
 
     private void hargabeliKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargabeliKeyTyped
-   // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_hargabeliKeyTyped
 
     private void hargasatuanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargasatuanKeyTyped
-    // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_hargasatuanKeyTyped
 
     private void hargaboxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargaboxKeyTyped
-     // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_hargaboxKeyTyped
 
     /**
@@ -830,7 +950,7 @@ public class menu extends javax.swing.JFrame {
             }
         });
     }
-private JPanel panel;
+    private JPanel panel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel b_menu;
     private javax.swing.JLabel background;
@@ -848,12 +968,14 @@ private JPanel panel;
     private javax.swing.JTextField hargasatuan;
     private javax.swing.JTextField isi;
     private javax.swing.JPanel isiMenu;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton kembali;
     private javax.swing.JTextField kodeobat;
     private javax.swing.JButton laporanobat;
     private javax.swing.JButton laporanpelanggan;
@@ -881,5 +1003,6 @@ private JPanel panel;
     private javax.swing.JTextField txt2;
     private javax.swing.JButton ubah;
     private javax.swing.JButton ubah2;
+    private javax.swing.JButton ubahsimpan;
     // End of variables declaration//GEN-END:variables
 }

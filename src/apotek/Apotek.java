@@ -19,9 +19,6 @@ public class Apotek {
      * @param args the command line arguments
      */
     public static void main(String[] args)throws SQLException {
-//                viewKasir.login loginn =new viewKasir.login();
-//                model.model_login modell = new model_login();
-//                control.user controll = new control.user(loginn,modell);
                 new user (new login(), new model_login());
     }
     
