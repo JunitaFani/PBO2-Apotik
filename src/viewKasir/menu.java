@@ -5,7 +5,15 @@
  */
 package viewKasir;
 
+import java.awt.CardLayout;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -14,36 +22,17 @@ import java.awt.GridBagLayout;
  * @author JUNITA
  */
 public class menu extends javax.swing.JFrame {
-//    private Connection koneksi;
-    GridBagLayout layout = new GridBagLayout();
-    dataObat p1;
-    dataPelanggan p2;
-    dataTagihan p3;
-    dataKas p4;
-    profil p5;
-    /**
-     * Creates new form menu
-     */  
-    public menu() {
+
+        public menu() {
         initComponents();
-        p1 = new dataObat();
-        p2 = new dataPelanggan();
-        p3 = new dataTagihan();
-        p4 = new dataKas();
-        p5 = new profil();
-        
-        panel.setLayout(layout);
-        panel.add(p1);
-        panel.add(p2);
-        panel.add(p3);
-        panel.add(p4);
-        panel.add(p5);
-        
-        p1.setVisible(false);
-        p2.setVisible(false);
-        p3.setVisible(true);
-        p4.setVisible(false);
-        p5.setVisible(false);
+        CardLayout cl = (CardLayout) (isiMenu.getLayout());
+
+        isiMenu.add("dataObat", dataObat);
+    }
+
+    public void showCard(String key) {
+        CardLayout cl = (CardLayout) (isiMenu.getLayout());
+        cl.show(isiMenu, key);
     }
 
     /**
@@ -55,7 +44,32 @@ public class menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel = new javax.swing.JPanel();
+        isiMenu = new javax.swing.JPanel();
+        dataObat = new javax.swing.JPanel();
+        tabObat = new javax.swing.JTabbedPane();
+        obatUmum = new javax.swing.JPanel();
+        pilihan1 = new javax.swing.JComboBox<>();
+        search1 = new javax.swing.JButton();
+        txt1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelUmum = new javax.swing.JTable();
+        kembali = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabel2 = new javax.swing.JTable();
+        background1 = new javax.swing.JLabel();
+        obatResep = new javax.swing.JPanel();
+        tambah2 = new javax.swing.JButton();
+        hapus2 = new javax.swing.JButton();
+        ubah2 = new javax.swing.JButton();
+        pilihan2 = new javax.swing.JComboBox<>();
+        search2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelResep = new javax.swing.JTable();
+        txt2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        background3 = new javax.swing.JLabel();
+        menu = new javax.swing.JPanel();
         obat = new javax.swing.JButton();
         pelanggan = new javax.swing.JButton();
         tagihan = new javax.swing.JButton();
@@ -67,18 +81,227 @@ public class menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1349, Short.MAX_VALUE)
-        );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
-        );
+        isiMenu.setLayout(new java.awt.CardLayout());
 
-        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1349, 572));
+        dataObat.setPreferredSize(new java.awt.Dimension(1349, 574));
+        dataObat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tabObat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabObatMouseClicked(evt);
+            }
+        });
+
+        obatUmum.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pilihan1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pilihan1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Obat", "Nama Obat" }));
+        obatUmum.add(pilihan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 25, 220, 30));
+
+        search1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/cari.png"))); // NOI18N
+        search1.setBorder(null);
+        search1.setBorderPainted(false);
+        search1.setContentAreaFilled(false);
+        obatUmum.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 18, 62, 40));
+
+        txt1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt1.setBorder(null);
+        obatUmum.add(txt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 270, 20));
+
+        tabelUmum.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tabelUmum.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Kode", "Nama Obat", "Satuan", "Isi", "Stok", "Harga Beli", "Harga Satuan", "Harga Box"
+            }
+        ));
+        tabelUmum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelUmumMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabelUmum);
+
+        obatUmum.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1290, 410));
+
+        kembali.setText("kembali");
+        obatUmum.add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/layer obat.png"))); // NOI18N
+        obatUmum.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 540));
+
+        tabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tabel2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "No", "Kode", "Satuan", "Stok", "Harga Beli", "Harga Satuan", "Harga Box"
+            }
+        ));
+        jScrollPane3.setViewportView(tabel2);
+
+        obatUmum.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1290, 410));
+
+        background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/layer2.png"))); // NOI18N
+        obatUmum.add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 572));
+
+        tabObat.addTab("Obat Umum", obatUmum);
+
+        obatResep.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tambah2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/tambah.png"))); // NOI18N
+        tambah2.setBorder(null);
+        tambah2.setBorderPainted(false);
+        tambah2.setContentAreaFilled(false);
+        tambah2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambah2ActionPerformed(evt);
+            }
+        });
+        obatResep.add(tambah2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1155, 139, 130, 50));
+
+        hapus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/hapus.png"))); // NOI18N
+        hapus2.setBorder(null);
+        hapus2.setBorderPainted(false);
+        hapus2.setContentAreaFilled(false);
+        obatResep.add(hapus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1155, 331, 130, 50));
+
+        ubah2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/ubah.png"))); // NOI18N
+        ubah2.setBorder(null);
+        ubah2.setBorderPainted(false);
+        ubah2.setContentAreaFilled(false);
+        ubah2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubah2ActionPerformed(evt);
+            }
+        });
+        obatResep.add(ubah2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1155, 235, 130, 50));
+
+        pilihan2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        pilihan2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Resep", "Nama Resep" }));
+        obatResep.add(pilihan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 170, 30));
+
+        search2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/cari_1.png"))); // NOI18N
+        search2.setContentAreaFilled(false);
+        obatResep.add(search2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 30, 30));
+
+        tabelResep.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Kode Resep", "Nama Resep"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelResep);
+
+        obatResep.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 57, 1030, 460));
+
+        txt2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt2.setBorder(null);
+        obatResep.add(txt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(247, 15, 270, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/obatt.png"))); // NOI18N
+        obatResep.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 540));
+
+        tabObat.addTab("Obat Beresep", obatResep);
+
+        dataObat.add(tabObat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 570));
+
+        background3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/blank.png"))); // NOI18N
+        dataObat.add(background3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 572));
+
+        isiMenu.add(dataObat, "card2");
+
+        getContentPane().add(isiMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1349, 572));
+
+        menu.setLayout(null);
 
         obat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panel/obat.png"))); // NOI18N
         obat.setBorder(null);
@@ -89,7 +312,8 @@ public class menu extends javax.swing.JFrame {
                 obatActionPerformed(evt);
             }
         });
-        getContentPane().add(obat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 225, 77));
+        menu.add(obat);
+        obat.setBounds(0, 0, 229, 77);
 
         pelanggan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panel/pelanggan.png"))); // NOI18N
         pelanggan.setBorder(null);
@@ -100,7 +324,8 @@ public class menu extends javax.swing.JFrame {
                 pelangganActionPerformed(evt);
             }
         });
-        getContentPane().add(pelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 0, 225, 77));
+        menu.add(pelanggan);
+        pelanggan.setBounds(225, 0, 229, 77);
 
         tagihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panel/tagihan.png"))); // NOI18N
         tagihan.setBorder(null);
@@ -111,7 +336,8 @@ public class menu extends javax.swing.JFrame {
                 tagihanActionPerformed(evt);
             }
         });
-        getContentPane().add(tagihan, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 225, 77));
+        menu.add(tagihan);
+        tagihan.setBounds(450, 0, 229, 77);
 
         kas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panel/kas.png"))); // NOI18N
         kas.setBorder(null);
@@ -122,7 +348,8 @@ public class menu extends javax.swing.JFrame {
                 kasActionPerformed(evt);
             }
         });
-        getContentPane().add(kas, new org.netbeans.lib.awtextra.AbsoluteConstraints(675, 0, 225, 77));
+        menu.add(kas);
+        kas.setBounds(675, 0, 229, 77);
 
         profil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panel/profil.png"))); // NOI18N
         profil.setBorder(null);
@@ -133,12 +360,16 @@ public class menu extends javax.swing.JFrame {
                 profilActionPerformed(evt);
             }
         });
-        getContentPane().add(profil, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 225, 77));
+        menu.add(profil);
+        profil.setBounds(900, 0, 229, 77);
 
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panel/logout.png"))); // NOI18N
         logout.setBorder(null);
         logout.setContentAreaFilled(false);
-        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1125, 0, 225, 77));
+        menu.add(logout);
+        logout.setBounds(1120, 0, 229, 77);
+
+        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 77));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/panel/layer2.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 690));
@@ -146,45 +377,98 @@ public class menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void obatListener(ActionListener listener) {
+        obat.addActionListener(listener);
+    }
+
+    public void pelangganListener(ActionListener listener) {
+        pelanggan.addActionListener(listener);
+    }
+     public void SearchObatUmum(ActionListener l) {
+        this.search1.addActionListener(l);
+    }
+
+    public JTable getTabelObatUmum() {
+        return tabelUmum;
+    }
+
+    public int getBarisObatUmum() {
+        return tabelUmum.getSelectedRow();
+    }
+
+    public void setTabel(DefaultTableModel tabel) {
+        this.tabelUmum.setModel(tabel);
+    }
+
+    public void tabelListener(MouseListener m) {
+        tabelUmum.addMouseListener(m);
+    }
+
+    public JComboBox getPilihan1() {
+        return pilihan1;
+    }
+
+    public void setPilihan1(String pilihan1) {
+        getPilihan1().addItem(pilihan1);
+    }
+
+    public JTextField settxtsearch1() {
+        return txt1;
+    }
+
+    public String gettxtsearch1() {
+        return txt1.getText();
+    }
+
+    public void searchListener(ActionListener e) {
+        this.search1.addActionListener(e);
+    }
+
+    public void kembaliListener(ActionListener l) {
+        this.kembali.addActionListener(l);
+    }
+
+    public JButton getSearch() {
+        return search1;
+    }
+
+    
     private void obatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obatActionPerformed
-        p1.setVisible(true);
-        p2.setVisible(false);
-        p3.setVisible(false);
-        p4.setVisible(false);
-        p5.setVisible(false);
+        CardLayout cl = (CardLayout) (isiMenu.getLayout());
+        cl.show(isiMenu, "");
     }//GEN-LAST:event_obatActionPerformed
 
     private void pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelangganActionPerformed
-        p1.setVisible(false);
-        p2.setVisible(true);
-        p3.setVisible(false);
-        p4.setVisible(false);
-        p5.setVisible(false);
+
     }//GEN-LAST:event_pelangganActionPerformed
 
     private void tagihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tagihanActionPerformed
-        p1.setVisible(false);
-        p2.setVisible(false);
-        p3.setVisible(true);
-        p4.setVisible(false);
-        p5.setVisible(false);
+
     }//GEN-LAST:event_tagihanActionPerformed
 
     private void kasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kasActionPerformed
-        p1.setVisible(false);
-        p2.setVisible(false);
-        p3.setVisible(false);
-        p4.setVisible(true);   
-        p5.setVisible(false);
+
     }//GEN-LAST:event_kasActionPerformed
 
     private void profilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profilActionPerformed
-        p1.setVisible(false);
-        p2.setVisible(false);
-        p3.setVisible(false);
-        p4.setVisible(false);   
-        p5.setVisible(true);
+
     }//GEN-LAST:event_profilActionPerformed
+
+    private void tabelUmumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelUmumMouseClicked
+
+    }//GEN-LAST:event_tabelUmumMouseClicked
+
+    private void tambah2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah2ActionPerformed
+
+    }//GEN-LAST:event_tambah2ActionPerformed
+
+    private void ubah2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubah2ActionPerformed
+
+    }//GEN-LAST:event_ubah2ActionPerformed
+
+    private void tabObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabObatMouseClicked
+
+    }//GEN-LAST:event_tabObatMouseClicked
     
     /**
      * @param args the command line arguments
@@ -223,12 +507,37 @@ public class menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JLabel background1;
+    private javax.swing.JLabel background3;
+    private javax.swing.JPanel dataObat;
+    private javax.swing.JButton hapus2;
+    private javax.swing.JPanel isiMenu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton kas;
+    private javax.swing.JButton kembali;
     private javax.swing.JButton logout;
+    private javax.swing.JPanel menu;
     private javax.swing.JButton obat;
-    private javax.swing.JPanel panel;
+    private javax.swing.JPanel obatResep;
+    private javax.swing.JPanel obatUmum;
     private javax.swing.JButton pelanggan;
+    private javax.swing.JComboBox<String> pilihan1;
+    private javax.swing.JComboBox<String> pilihan2;
     private javax.swing.JButton profil;
+    private javax.swing.JButton search1;
+    private javax.swing.JButton search2;
+    private javax.swing.JTabbedPane tabObat;
+    private javax.swing.JTable tabel2;
+    private javax.swing.JTable tabelResep;
+    private javax.swing.JTable tabelUmum;
     private javax.swing.JButton tagihan;
+    private javax.swing.JButton tambah2;
+    private javax.swing.JTextField txt1;
+    private javax.swing.JTextField txt2;
+    private javax.swing.JButton ubah2;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,18 +30,19 @@ public class model_login extends basemodel{
     }
 
     public void getSession(String username, String password) throws SQLException {
-        String query = "select \"iduser\", nama from public.tb_users where username = '" + username + "' and password = '" + password + "'";
+        String query = "SELECT kodepegawai, usernamee from public.datapegawai where usernamee = '" + username + "' and passwordd = '" + password + "'";
         ResultSet rs = con.getResult(query);
         while (rs.next()) {
-            user.setIdLogin(rs.getString("idUser"));
-            user.setUserLogin(rs.getString("username"));
+            user.setIdLogin(rs.getString("kodepegawai"));
+            user.setUserLogin(rs.getString("usernamee"));
         }
 
     }
 
-    public int lvlLogin(String username, String password) throws SQLException {
+
+    public int lvlLogin(String usernamee, String passwordd) throws SQLException {
         int level = 0;
-        String query = "select level from tb_users where username='" + username + "' and password='" + password + "'";
+        String query = "select idlevel from datapegawai where usernamee='" + usernamee + "' and passwordd='" + passwordd + "'";
         ResultSet rs = con.getResult(query);
         rs.next();
         level = Integer.valueOf(rs.getString(1));
@@ -49,10 +50,10 @@ public class model_login extends basemodel{
 
     }
 
-    public int login(String username, String password) throws SQLException {
+    public int login(String usernamee, String passwordd) throws SQLException {
         int result = 0;
 
-        String query = "select username from tb_users where username='" + username + "' and password='" + password + "'";
+        String query = "select idlevel from datapegawai where usernamee='" + usernamee + "' and passwordd='" + passwordd + "'";
         ResultSet rs = con.getResult(query);
         rs.last();
         result = rs.getRow();

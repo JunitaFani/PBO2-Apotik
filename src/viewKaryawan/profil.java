@@ -35,15 +35,17 @@ public class profil extends javax.swing.JPanel {
         tgl = new javax.swing.JLabel();
         alamat = new javax.swing.JLabel();
         telp = new javax.swing.JLabel();
+        jeniskelamin = new javax.swing.JLabel();
         bckgrnd = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(namma, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 152, 410, 40));
+        add(namma, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 110, 410, 40));
         add(kode, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 73, 410, 40));
-        add(jabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 235, 410, 40));
-        add(tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 318, 410, 40));
-        add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 403, 410, 40));
-        add(telp, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 484, 410, 40));
+        add(jabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 192, 410, 40));
+        add(tgl, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 347, 410, 40));
+        add(alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 430, 410, 40));
+        add(telp, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 513, 410, 40));
+        add(jeniskelamin, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 265, 410, 40));
 
         bckgrnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login/profil.png"))); // NOI18N
         add(bckgrnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 572));
@@ -54,6 +56,7 @@ public class profil extends javax.swing.JPanel {
     private javax.swing.JLabel alamat;
     private javax.swing.JLabel bckgrnd;
     private javax.swing.JLabel jabatan;
+    private javax.swing.JLabel jeniskelamin;
     private javax.swing.JLabel kode;
     private javax.swing.JLabel namma;
     private javax.swing.JLabel telp;

@@ -34,7 +34,6 @@ public class dataTagihan extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         cetak = new javax.swing.JCheckBox();
         txtkode = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         namaPegawai = new javax.swing.JLabel();
         tgl = new javax.swing.JLabel();
         pegawai = new javax.swing.JLabel();
@@ -89,10 +88,6 @@ public class dataTagihan extends javax.swing.JPanel {
 
         txtkode.setBorder(null);
         add(txtkode, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 138, 248, 24));
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Umum", "Resep" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 88, 155, 24));
 
         namaPegawai.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         namaPegawai.setText("Nama");
@@ -215,7 +210,6 @@ public class dataTagihan extends javax.swing.JPanel {
     private javax.swing.JTextField bayar;
     private javax.swing.JCheckBox cetak;
     private javax.swing.JTextField harga;
-    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

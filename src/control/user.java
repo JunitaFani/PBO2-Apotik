@@ -63,7 +63,7 @@ public user(login loginn, model_login modelLogin) throws SQLException {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-//                modelLogin.getSession(loginn.getUsername(), loginn.getPassword());
+                modelLogin.getSession(loginn.getUsername(), loginn.getPassword());
                 int result = modelLogin.login(loginn.getUsername(), loginn.getPassword());
                 System.out.println(result);
                 if (result == 1) {

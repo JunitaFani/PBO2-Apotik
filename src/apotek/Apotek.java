@@ -17,9 +17,14 @@ public class Apotek {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
-    public static void main(String[] args)throws SQLException {
-                new user (new login(), new model_login());
+    public static void main(String[] args) throws SQLException {
+        new user(new login(), new model_login());
+//        viewKasir.login login = new login();
+//        model.model_login model = new model_login();
+//        new control.user(login, model);
+
     }
-    
+
 }
