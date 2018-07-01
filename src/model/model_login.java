@@ -7,6 +7,7 @@ package model;
 
 import apotek.koneksi;
 import control.user;
+import control.user2;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

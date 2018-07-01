@@ -18,7 +18,6 @@ import model.model_login;
  */
 public class login extends javax.swing.JFrame {
     private user usr;
-    private viewKasir.menu menu = new viewKasir.menu();
     private model_login loginn;
     public login() {
         initComponents();

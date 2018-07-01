@@ -74,19 +74,19 @@ public user(login loginn, model_login modelLogin) throws SQLException {
                         loginn.dispose();
                         kasir.setVisible(true);
                         model_kasir model = new model_kasir(con);
-                        new ckasir(model, kasir);
+                        new ckasir_menu(model, kasir);
                     } else if (level == 2) {
                         viewKaryawan.menu karyawan = new viewKaryawan.menu();                      
                           loginn.dispose();
                         karyawan.setVisible(true);
                         model_karyawan model = new model_karyawan(con);
-                        new ckaryawan(model, karyawan);
+                        new ckaryawan_menu(model, karyawan);
                     }else if (level == 3) {
                         viewPemilik.menu pemilik= new viewPemilik.menu();
                         loginn.dispose();
                         pemilik.setVisible(true);
                         model_pemilik model = new model_pemilik(con);
-                        new cPemilik(model, pemilik);
+                        new cpemilik_menu(model, pemilik);
                     }
                 } else if ((loginn.getUsername().equalsIgnoreCase("") || loginn.getPassword().equalsIgnoreCase(""))) {
                     JOptionPane.showMessageDialog(loginn, "Username dan Password tidak Boleh Kosong");

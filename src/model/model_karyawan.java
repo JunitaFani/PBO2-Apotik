@@ -140,6 +140,27 @@ public class model_karyawan extends basemodel {
         }
         return tableModel;
     }
+    
+     public DefaultTableModel getTablepelanggancari(String query) throws SQLException {
+        Object[] header = {"Kode Obat", "Nama Obat", "Satuan", "Isi", "Stok", "Harga Beli", "Harga Satuan", "Harga Box"};
+        DefaultTableModel tableModel = new DefaultTableModel(null, header);
+
+        String sql = "SELECT d.id_obat, d.namaobat, s.satuan, d.isi, d.stok, d.hargabeli, d.hargasatuan, d.hargabox\n"
+                + "  FROM public.dataobat d join public.satuan s on d.id_satuan = s.id_satuan where namaobat = " + query;
+        System.out.println(sql);
+        for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+            tableModel.removeRow(i);
+        }
+        ResultSet rs = con.getResult(sql);
+        while (rs.next()) {
+            String kolom[] = new String[8];
+            for (int i = 0; i < kolom.length; i++) {
+                kolom[i] = rs.getString(i + 1);
+            }
+            tableModel.addRow(kolom);
+        }
+        return tableModel;
+    }
 
     public String[] combojeniskelamin() throws SQLException {
         String query = "SELECT jeniskelamin FROM public.jeniskelamin";

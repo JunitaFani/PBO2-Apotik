@@ -6,6 +6,16 @@
 package viewKaryawan;
 
 import apotek.*;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +29,43 @@ public class dataPelanggan extends javax.swing.JPanel {
     public dataPelanggan() {
         initComponents();
     }
+//pelanggan
+    
+    public void tabelpelanggan(MouseListener m) {
+        pelanggan.addMouseListener(m);
+    }
 
+    public JTable gettabelpelanggan() {
+        return pelanggan;
+    }
+
+    public int getBaristabelpelanggan() {
+        return pelanggan.getSelectedRow();
+    }
+
+    public void buttonUbahpelanggan(boolean status) {
+        this.ubah1.setEnabled(status);
+    }
+
+    public void buttonHapuspelanggan(boolean status) {
+        this.hapus1.setEnabled(status);
+    }
+
+    public void buttonTambahpelanggan(boolean status) {
+        this.tambah1.setEnabled(status);
+    }
+
+    public JButton getUbahpelanggan() {
+        return ubah1;
+    }
+
+        public JButton tambahpelanggan() {
+        return tambah1;
+    }
+ 
+        public void setTabelpelanggan(DefaultTableModel tabel) {
+        this.pelanggan.setModel(tabel);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,12 +78,12 @@ public class dataPelanggan extends javax.swing.JPanel {
         pilihan = new javax.swing.JComboBox<>();
         txt = new javax.swing.JTextField();
         search = new javax.swing.JButton();
-        tambah = new javax.swing.JButton();
-        ubah = new javax.swing.JButton();
-        hapus = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabel = new javax.swing.JTable();
-        background = new javax.swing.JLabel();
+        tambah1 = new javax.swing.JButton();
+        ubah1 = new javax.swing.JButton();
+        hapus1 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        pelanggan = new javax.swing.JTable();
+        background4 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -55,105 +101,104 @@ public class dataPelanggan extends javax.swing.JPanel {
         search.setContentAreaFilled(false);
         add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 62, 43));
 
-        tambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/tambah.png"))); // NOI18N
-        tambah.setBorder(null);
-        tambah.setBorderPainted(false);
-        tambah.setContentAreaFilled(false);
-        tambah.addMouseListener(new java.awt.event.MouseAdapter() {
+        tambah1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/tambah.png"))); // NOI18N
+        tambah1.setBorder(null);
+        tambah1.setBorderPainted(false);
+        tambah1.setContentAreaFilled(false);
+        tambah1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tambahMouseClicked(evt);
+                tambah1MouseClicked(evt);
             }
         });
-        tambah.addActionListener(new java.awt.event.ActionListener() {
+        tambah1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tambahActionPerformed(evt);
+                tambah1ActionPerformed(evt);
             }
         });
-        add(tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(928, 9, 130, 50));
+        add(tambah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(928, 9, 130, 50));
 
-        ubah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/ubah.png"))); // NOI18N
-        ubah.setBorder(null);
-        ubah.setBorderPainted(false);
-        ubah.setContentAreaFilled(false);
-        ubah.addActionListener(new java.awt.event.ActionListener() {
+        ubah1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/ubah.png"))); // NOI18N
+        ubah1.setBorder(null);
+        ubah1.setBorderPainted(false);
+        ubah1.setContentAreaFilled(false);
+        ubah1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ubahActionPerformed(evt);
+                ubah1ActionPerformed(evt);
             }
         });
-        add(ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1065, 11, -1, -1));
+        add(ubah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1065, 11, -1, -1));
 
-        hapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/hapus.png"))); // NOI18N
-        hapus.setBorder(null);
-        hapus.setBorderPainted(false);
-        hapus.setContentAreaFilled(false);
-        add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(1198, 10, -1, -1));
+        hapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/hapus.png"))); // NOI18N
+        hapus1.setBorder(null);
+        hapus1.setBorderPainted(false);
+        hapus1.setContentAreaFilled(false);
+        add(hapus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1198, 10, -1, -1));
 
-        tabel.setModel(new javax.swing.table.DefaultTableModel(
+        pelanggan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Tanggal daftar", "Kode", "Nama", "Tanggal lahir", "Alamat", "Telp", "Pegawai"
+                "Kode Pelanggan", "Tanggal Daftar", "Nama Pelanggan", "Jenis Kelamin", "Tanggal Lahir", "Alamat", "No Telepon"
             }
         ));
-        jScrollPane1.setViewportView(tabel);
+        jScrollPane5.setViewportView(pelanggan);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 1290, 460));
+        add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 1290, 460));
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/layer2.png"))); // NOI18N
-        add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 572));
+        background4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/layer2.png"))); // NOI18N
+        add(background4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 572));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
-    new tambahpelanggan().setVisible(true);      
-    }//GEN-LAST:event_tambahActionPerformed
+    private void tambah1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambah1MouseClicked
 
-    private void tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahMouseClicked
-       
-        
-    }//GEN-LAST:event_tambahMouseClicked
+    }//GEN-LAST:event_tambah1MouseClicked
 
-    private void ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahActionPerformed
-    new ubahpelanggan1().setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_ubahActionPerformed
+    private void tambah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah1ActionPerformed
+
+    }//GEN-LAST:event_tambah1ActionPerformed
+
+    private void ubah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubah1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ubah1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel background;
-    private javax.swing.JButton hapus;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel background4;
+    private javax.swing.JButton hapus1;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable pelanggan;
     private javax.swing.JComboBox<String> pilihan;
     private javax.swing.JButton search;
-    private javax.swing.JTable tabel;
-    private javax.swing.JButton tambah;
+    private javax.swing.JButton tambah1;
     private javax.swing.JTextField txt;
-    private javax.swing.JButton ubah;
+    private javax.swing.JButton ubah1;
     // End of variables declaration//GEN-END:variables
 }

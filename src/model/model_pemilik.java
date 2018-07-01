@@ -23,6 +23,11 @@ public class model_pemilik extends basemodel {
     koneksi con;
     Connection conn;
 
+        public model_pemilik() throws SQLException {
+        super();
+        con = new koneksi("postgres", "junita123", "Apotik");
+    }
+    
     public model_pemilik(koneksi con) throws SQLException {
         super();
         this.con = new koneksi("postgres", "junita123", "Apotik");

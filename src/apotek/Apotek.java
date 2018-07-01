@@ -20,10 +20,10 @@ public class Apotek {
      * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws SQLException {
-        new user(new login(), new model_login());
-//        viewKasir.login login = new login();
-//        model.model_login model = new model_login();
-//        new control.user(login, model);
+//        new user(new login(), new model_login());
+        viewKasir.login login = new login();
+        model.model_login model = new model_login();
+        new control.user(login, model);
 
     }
 
