@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.model_karyawan;
-import viewKaryawan.menu;
+import view.menu_karyawan;
 
 /**
  *
@@ -22,7 +22,7 @@ import viewKaryawan.menu;
  */
 public class ckaryawan_laporanobat extends ckaryawan_menu {
 
-    private menu menuu;
+    private menu_karyawan menuu;
     private model_karyawan modell;
     String username;
     private int kodeobat;
@@ -34,19 +34,17 @@ public class ckaryawan_laporanobat extends ckaryawan_menu {
     private int hargasatuan;
     private int hargabox;
 
-    public ckaryawan_laporanobat(model_karyawan modell, menu menuu) throws SQLException {
+    public ckaryawan_laporanobat(model_karyawan modell, menu_karyawan menuu) throws SQLException {
         super(modell, menuu);
         this.menuu = menuu;
         this.modell = modell;
 
         menuu.setVisible(true);
         menuu.showCard("laporanObat");
-        //data obat
-        //obat umum
 //        menuu.setTabel(modell.getTableObatUmum());
 //        menuu.tabelListener(new getTabelObatUmum());
         menuu.laporanObatListener(new laporanObatListener());
-
+        menuu.carilistener(new btnCari());
         menuu.kembaliMenu3().addActionListener(new kembaliMenu());
 //        menuu.SearchObatUmum(new SearchObatUmum());
 //        menuu.segarkanListener(new kembaliListener());
@@ -65,9 +63,21 @@ public class ckaryawan_laporanobat extends ckaryawan_menu {
 
     }
 
-    private class getTabelObatUmum implements MouseListener {
+    private class btnCari implements ActionListener {
 
-        public getTabelObatUmum() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                menuu.setTabel(modell.getTableModelcari("'" + menuu.GetTanggal() + "'"));
+            } catch (SQLException ex) {
+                Logger.getLogger(ckaryawan_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    private class getTabelObat implements MouseListener {
+
+        public getTabelObat() {
         }
 
         @Override

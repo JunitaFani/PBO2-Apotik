@@ -19,21 +19,25 @@ public class koneksi {
 //    private final String url = "jdbc:postgresql://localhost:5432/Apotik";
 //    private final String user = "postgres";
 //    private final String password = "junita123";
- private Connection con;
+
+    private Connection con;
     private Statement stm;
 
     public koneksi(String username, String password, String db) throws SQLException {
         String url = "jdbc:postgresql://localhost:5432/" + db;
         con = DriverManager.getConnection(url, username, password);
-        stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); 
+        stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         System.out.println("Koneksi berhasil");
     }
+
     public void execute(String sql) throws SQLException {
         this.stm.executeUpdate(sql);
     }
-    public ResultSet getResult(String sql) throws SQLException {     
+
+    public ResultSet getResult(String sql) throws SQLException {
         return stm.executeQuery(sql);
     }
+
     public koneksi Koneksi() {
         return (koneksi) con;
     }

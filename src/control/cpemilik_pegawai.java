@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.model_pemilik;
-import viewPemilik.menu;
+import view.menu_pemilik;
 
 /**
  *
@@ -26,7 +26,7 @@ import viewPemilik.menu;
  */
 public class cpemilik_pegawai {
 
-    private menu menuu;
+    private menu_pemilik menuu;
     private model_pemilik modell;
     String username;
     private int kodepegawai;
@@ -39,7 +39,7 @@ public class cpemilik_pegawai {
     private String user;
     private String pass;
 
-    public cpemilik_pegawai(model_pemilik modell, menu menuu) throws SQLException {
+    public cpemilik_pegawai(model_pemilik modell, menu_pemilik menuu) throws SQLException {
         this.menuu = menuu;
         this.modell = modell;
         //data pegawai
@@ -64,14 +64,14 @@ public class cpemilik_pegawai {
         //obat resep
     }
 
-        private class kembaliMenu implements ActionListener {
+    private class kembaliMenu implements ActionListener {
 
         public kembaliMenu() {
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            new cpemilik_menu(modell,menuu);
+            new cpemilik_menu(modell, menuu);
         }
 
     }
@@ -85,7 +85,7 @@ public class cpemilik_pegawai {
         menuu.tanggalLahir().setDate(null);
     }
 
-           private class batalPegawai implements ActionListener {
+    private class batalPegawai implements ActionListener {
 
         public batalPegawai() {
 
@@ -103,7 +103,7 @@ public class cpemilik_pegawai {
 
         }
     }
-    
+
     private class tabelpegawai implements MouseListener {
 
         public tabelpegawai() {
@@ -206,8 +206,8 @@ public class cpemilik_pegawai {
                         jeniskelamin = 4;
                     }
                     modell.simpan("public.datapegawai(kodepegawai, namapegawai,idlevel, id_jeniskelamin, tgllahir, alamat, notelp, usernamee, passwordd)"
-                            + " VALUES (DEFAULT, ' " + menuu.getNamaPegawai() + "', " + jabatan + ", " + jeniskelamin + ", ' " + menuu.getTanggallahir() + "', ' "
-                            + menuu.getAlamat() + "', ' " + menuu.getNotelp() + "', ' " + menuu.getUser() + "', ' " + menuu.getPass() + "')");
+                            + " VALUES (DEFAULT, '" + menuu.getNamaPegawai() + "', " + jabatan + ", " + jeniskelamin + ", ' " + menuu.getTanggallahir() + "', '"
+                            + menuu.getAlamat() + "', '" + menuu.getNotelp() + "', '" + menuu.getUser() + "', '" + menuu.getPass() + "')");
                     menuu.setTabel(modell.getTablepegawai());
                     JOptionPane.showMessageDialog(menuu, "data berhasil disimpan");
                     resetpegawai();

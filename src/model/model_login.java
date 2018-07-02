@@ -7,16 +7,15 @@ package model;
 
 import apotek.koneksi;
 import control.user;
-import control.user2;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 /**
  *
  * @author JUNITA
  */
-public class model_login extends basemodel{
+public class model_login extends basemodel {
+
     private koneksi con;
     private basemodel base;
     private String[] session = new String[3];
@@ -40,7 +39,6 @@ public class model_login extends basemodel{
 
     }
 
-
     public int lvlLogin(String usernamee, String passwordd) throws SQLException {
         int level = 0;
         String query = "select idlevel from datapegawai where usernamee='" + usernamee + "' and passwordd='" + passwordd + "'";
@@ -61,8 +59,7 @@ public class model_login extends basemodel{
         return result;
 
     }
-    
-    
+
     @Override
     public boolean simpan(String query) throws SQLException {
         String queri = "INSERT INTO " + query;
@@ -82,4 +79,3 @@ public class model_login extends basemodel{
     }
 
 }
-

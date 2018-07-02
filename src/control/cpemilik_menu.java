@@ -4,24 +4,26 @@
  * and open the template in the editor.
  */
 package control;
+
 import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import model.model_pemilik;
-import viewPemilik.menu;
+import view.menu_pemilik;
 
 /**
  *
  * @author JUNITA
  */
 public class cpemilik_menu {
-    
-    private menu menuu;
-    private model_pemilik modell;
 
-    public cpemilik_menu(model_pemilik modell, menu menuuu) {
+    private menu_pemilik menuu;
+    private model_pemilik modell;
+    user login;
+
+    public cpemilik_menu(model_pemilik modell, menu_pemilik menuuu) {
         this.menuu = menuuu;
 
         menuuu.setVisible(true);
@@ -29,9 +31,10 @@ public class cpemilik_menu {
 
         menuu.datapegawaiListener(new datapegawaiListener());
         menuu.datakasListener(new dataKasListener());
-        menuu.laporanPelangganListener(new laporanPelangganListener());
         menuu.laporanObatListener(new laporanobatListener());
-        
+        menuu.setsessionnama(login.getUserLogin());
+        menuu.setsessionkode(login.getIdLogin());
+
     }
 
     private class datapegawaiListener implements ActionListener {
@@ -68,14 +71,14 @@ public class cpemilik_menu {
                 Logger.getLogger(cpemilik_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                new cpemilik_datakas(modell, menuu);
+                new cpemilik_laporankas(modell, menuu);
             } catch (SQLException ex) {
                 Logger.getLogger(cpemilik_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-       public class laporanobatListener implements ActionListener {
+
+    public class laporanobatListener implements ActionListener {
 
         public laporanobatListener() {
 
@@ -95,25 +98,5 @@ public class cpemilik_menu {
             }
         }
     }
-       
-              public class laporanPelangganListener implements ActionListener {
 
-        public laporanPelangganListener() {
-
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                modell = new model_pemilik();
-            } catch (SQLException ex) {
-                Logger.getLogger(cpemilik_menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                new cpemilik_laporanpelanggan(modell, menuu);
-            } catch (SQLException ex) {
-                Logger.getLogger(cpemilik_menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
 }

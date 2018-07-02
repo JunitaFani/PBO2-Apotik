@@ -7,18 +7,17 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.itemtransaksi;
 import model.model_kasir;
-import viewKasir.menu;
+import view.menu_kasir;
+import model.obat;
+import model.obatDAO;
 
 /**
  *
@@ -26,94 +25,204 @@ import viewKasir.menu;
  */
 public class ckasir_tagihan {
 
-    private menu menuu;
-    private model_kasir modell;
+    model_kasir modell;
+    menu_kasir menuu;
     String username;
-    private int koderesep;
-    private String tgl;
-    private int kodeitem;
-    private int jumlah;
-    private int kodepelanggan;
+    obatDAO obatdao;
+    ArrayList<obat> listobat;
 
-    public ckasir_tagihan(model_kasir modell, menu menuu) throws SQLException {
-        this.menuu = menuu;
+    ckasir_tagihan(model_kasir modell, menu_kasir menuu) throws SQLException, ParseException {
         this.modell = modell;
+        this.menuu = menuu;
         menuu.setVisible(true);
         menuu.showCard("dataTagihan");
         menuu.kembaliMenu().addActionListener(new kembaliMenu());
-        menuu.setTabeltagihan(modell.getTabletagihan());
         resettagihan();
-    }
-
-    private class kembaliMenu implements ActionListener {
-
-        public kembaliMenu() {
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            new ckasir_menu(modell, menuu);
-        }
+        obatdao = new obatDAO();
+        listobat = obatdao.getAllobat();
+        this.menuu.OKListener(new TambahListener());
+        this.menuu.SimpanListener(new SaveListener());
+        this.menuu.HapusListener(new HapusListener());
+        this.menuu.btnKembaliListener(new kembaliMenu());
+        this.menuu.addobatList(listobat);
 
     }
 
     public void resettagihan() {
         menuu.settgl("");
-        menuu.setkodeResep("");
         menuu.setPelanggan("");
-        menuu.setkodeitem("");
         menuu.setjumlah("");
     }
+    String totalx;
+    Double plustotal;
+    Double plustotalx;
 
-//    private class simpanpegawai implements ActionListener {
+    class TambahListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            obat o = listobat.get(menuu.getobatSelected());
+            menuu.addItem(o.getnamaobat(), o.getid_obat() + "", menuu.getJumlah2(), o.getHarga());
+//            menuu.plusTotal2(menuu.getJumlah2() * o.getHarga());
+
+            plustotal = menuu.getJumlah2() * o.getHarga();
+            if (menuu.getTotalBiaya().equalsIgnoreCase("")) {
+                double ttl = 0;
+                double ttlx = ttl + plustotal;
+//         plustotal += plustottotalx = plustotalal;
+                totalx = String.valueOf(ttlx);
+                menuu.setTotal3(totalx);
+            } else {
+                Double ttl = Double.parseDouble(menuu.getTotalBiaya());
+                double ttlx = ttl + plustotal;
+                  totalx = String.valueOf(ttlx);
+                menuu.setTotal3(totalx);
+            }
+        }
+    }
+
+        class HapusListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+
+                    double totSkg = Double.parseDouble(menuu.getTotalBiaya());
+                    double tot2 = menuu.getSelectedQty2() * menuu.getSelectedHarga2();
+                    double total = totSkg - tot2;
+//                double totals = total - plustotal;
+                    menuu.setTotal3(total + "");
+
+//                menuu.minTotal2(menuu.getSelectedQty2() * menuu.getSelectedHarga2());
+                    menuu.hapusItem2(menuu.getRow2());
+                } catch (Exception a) {
+                    a.printStackTrace();
+                }
+            }
+        }
+
+        class SaveListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = menuu.getModel();
+                ArrayList<itemtransaksi> list = new ArrayList<>();
+
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    itemtransaksi item = new itemtransaksi();
+                    item.setHarga(Double.parseDouble(model.getValueAt(i, 2).toString()));
+                    item.setid_obat(Integer.parseInt(model.getValueAt(i, 0).toString()));
+                    item.setjumlah((int) Double.parseDouble(model.getValueAt(i, 3).toString()));
+                    list.add(item);
+                }
+                try {
+                    int bayar = Integer.parseInt(menuu.getBayar());
+                    double total = Double.parseDouble(menuu.getTotalBiaya());
+                    double kembalian = bayar - total;
+                    menuu.setKembalian(String.valueOf(kembalian));
+                    modell.saveTransaksi(menuu.getNamaPelanggan(), list);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+        }
+
+        private class kembaliMenu implements ActionListener {
+
+            public kembaliMenu() {
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ckasir_menu(modell, menuu);
+            }
+
+        }
+
 //
-//        public simpanpegawai() {
+//    private menu_kasir menuu;
+//    private model_kasir modell;
+//    String username;
+//    obatDAO obatdao;
+//    ArrayList<obat> listobat;
+//
+//    public ckasir_tagihan(model_kasir modell, menu_kasir menuu) throws SQLException, ParseException {
+//        this.menuu = menuu;
+//        this.modell = modell;
+//        menuu.setVisible(true);
+//        menuu.showCard("dataTagihan");
+//        menuu.kembaliMenu().addActionListener(new kembaliMenu());
+//        resettagihan();
+//        obatdao = new obatDAO();
+//        listobat = obatdao.getAllobat();
+//        menuu.addObatList(listobat);
+//        this.menuu.OKListener(new TambahListener());
+//        this.menuu.SimpanListener(new SimpanListener());       
+//        this.menuu.HapusListener(new HapusListener());
+//    }
+//
+//    private class kembaliMenu implements ActionListener {
+//
+//        public kembaliMenu() {
 //        }
 //
 //        @Override
 //        public void actionPerformed(ActionEvent e) {
-//            System.out.println("bisakok");
-////bagas
-//            try {
-//                if (menuu.getNamaPegawai().equalsIgnoreCase("")
-//                        || menuu.getTanggallahir().equalsIgnoreCase("")
-//                        || menuu.getAlamat().equalsIgnoreCase("")
-//                        || menuu.getNotelp().equalsIgnoreCase("")
-//                        || menuu.getUser().equalsIgnoreCase("")
-//                        || menuu.getPass().equalsIgnoreCase("")) {
-//                    JOptionPane.showMessageDialog(menuu, "Data Tidak Boleh Kosong!!!");
-//                } else {
-//                    int jabatan = 0;
-//                    if (menuu.getJabatan().getSelectedItem().toString().equalsIgnoreCase("karyawan")) {
-//                        jabatan = 1;
-//                    } else if (menuu.getJabatan().getSelectedItem().toString().equalsIgnoreCase("kasir")) {
-//                        jabatan = 2;
-//                    } else if (menuu.getJabatan().getSelectedItem().toString().equalsIgnoreCase("kasir")) {
-//                        jabatan = 2;
-//                    } else {
-//                        jabatan = 4;
-//                    }
+//            new ckasir_menu(modell, menuu);
+//        }
 //
-//                    int jeniskelamin = 0;
-//                    if (menuu.getJeniskelamin().getSelectedItem().toString().equalsIgnoreCase("laki laki")) {
-//                        jeniskelamin = 2;
-//                    } else if (menuu.getJeniskelamin().getSelectedItem().toString().equalsIgnoreCase("perempuan")) {
-//                        jeniskelamin = 3;
-//                    } else {
-//                        jeniskelamin = 4;
-//                    }
-//                    modell.simpan("public.datapegawai(kodepegawai, namapegawai,idlevel, id_jeniskelamin, tgllahir, alamat, notelp, usernamee, passwordd)"
-//                            + " VALUES (DEFAULT, ' " + menuu.getNamaPegawai() + "', " + jabatan + ", " + jeniskelamin + ", ' " + menuu.getTanggallahir() + "', ' "
-//                            + menuu.getAlamat() + "', ' " + menuu.getNotelp() + "', ' " + menuu.getUser() + "', ' " + menuu.getPass() + "')");
-//                    menuu.setTabel(modell.getTablepegawai());
-//                    JOptionPane.showMessageDialog(menuu, "data berhasil disimpan");
-//                    resetpegawai();
-//                    menuu.showCard("datapegawai");
-//                }
-//            } catch (SQLException ex) {
-//                Logger.getLogger(ckasir_pegawai.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+//    }
 //
+//    public void resettagihan() {
+//        menuu.settgl("");
+//        menuu.setPelanggan("");
+//        menuu.setjumlah("");
+//    }
+//
+//        class HapusListener implements ActionListener {
+//        
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            menuu.minTotal(menuu.getSelectedJumlah()*menuu.getSelectedHarga());
+//            menuu.hapusItem(menuu.getRow());
 //        }
 //    }
-}
+//    
+//    private class TambahListener implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//
+//            obat o = listobat.get(menuu.getObatSelected());
+//            menuu.addNamaObat(o.getid_obat() + "", o.getnamaobat(), menuu.getjumlah(),o.getHarga());
+//            menuu.plusTotal(menuu.getjumlah()*o.getHarga());
+//            
+//        }
+//    }
+//
+//   private class SimpanListener implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            DefaultTableModel model = menuu.getModel();
+//            ArrayList<itemtransaksi> list = new ArrayList<>();
+//            
+//            for (int i = 0; i < model.getRowCount(); i++) {
+//                itemtransaksi item = new itemtransaksi();
+//                item.setHarga(Double.parseDouble(model.getValueAt(i, 2).toString()));
+//                item.setkodeobat(Integer.parseInt(model.getValueAt(i, 0).toString()));
+//                item.setjumlah((int) Double.parseDouble(model.getValueAt(i, 3).toString()));
+//                list.add(item);
+//            }
+//            try {
+//                modell.saveTransaksi(menuu.getNama(), list);
+//            } catch (SQLException ex) {
+//                ex.printStackTrace();
+//            }
+//        }
+//    
+//   }
+    
+    }
+

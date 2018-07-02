@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.model_karyawan;
-import viewKaryawan.menu;
+import view.menu_karyawan;
 
 /**
  *
@@ -19,20 +19,21 @@ import viewKaryawan.menu;
  */
 public class ckaryawan_menu {
 
-    private menu menuu;
+    private menu_karyawan menuu;
     private model_karyawan modell;
+    user login;
 
-    public ckaryawan_menu(model_karyawan modell, menu menuuu) {
+    public ckaryawan_menu(model_karyawan modell, menu_karyawan menuuu) {
         this.menuu = menuuu;
 
         menuuu.setVisible(true);
         menuuu.showCard("mainMenu");
 
         menuu.obatListener(new obatListener());
-        menuu.pelangganListener(new pelangganListener());
-        menuu.laporanPelangganListener(new laporanPelangganListener());
         menuu.laporanObatListener(new laporanobatListener());
-        
+        menuu.setsessionnama(login.getUserLogin());
+        menuu.setsessionkode(login.getIdLogin());
+
     }
 
     private class obatListener implements ActionListener {
@@ -56,28 +57,7 @@ public class ckaryawan_menu {
         }
     }
 
-    public class pelangganListener implements ActionListener {
-
-        public pelangganListener() {
-
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                modell = new model_karyawan();
-            } catch (SQLException ex) {
-                Logger.getLogger(ckaryawan_menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                new ckaryawan_pelanggan(modell, menuu);
-            } catch (SQLException ex) {
-                Logger.getLogger(ckaryawan_menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    
-       public class laporanobatListener implements ActionListener {
+    public class laporanobatListener implements ActionListener {
 
         public laporanobatListener() {
 
@@ -97,25 +77,5 @@ public class ckaryawan_menu {
             }
         }
     }
-       
-              public class laporanPelangganListener implements ActionListener {
 
-        public laporanPelangganListener() {
-
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                modell = new model_karyawan();
-            } catch (SQLException ex) {
-                Logger.getLogger(ckaryawan_menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                new ckaryawan_laporanpelanggan(modell, menuu);
-            } catch (SQLException ex) {
-                Logger.getLogger(ckaryawan_menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
 }

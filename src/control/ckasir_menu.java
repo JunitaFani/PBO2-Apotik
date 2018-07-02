@@ -8,21 +8,23 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.model_kasir;
-import viewKasir.menu;
+import view.menu_kasir;
 
 /**
  *
  * @author JUNITA
  */
 public class ckasir_menu {
-        
-    private menu menuu;
-    private model_kasir modell;
 
-    public ckasir_menu(model_kasir modell, menu menuuu) {
+    private menu_kasir menuu;
+    private model_kasir modell;
+    user login;
+
+    public ckasir_menu(model_kasir modell, menu_kasir menuuu) {
         this.menuu = menuuu;
 
         menuuu.setVisible(true);
@@ -30,9 +32,10 @@ public class ckasir_menu {
 
         menuu.obatListener(new obatListener());
         menuu.kasListener(new dataKasListener());
-        menuu.pelangganListener(new pelangganListener());
         menuu.tagihanListener(new tagihanListener());
-        
+        menuu.setsessionnama(login.getUserLogin());
+        menuu.setsessionkode(login.getIdLogin());
+
     }
 
     private class obatListener implements ActionListener {
@@ -69,14 +72,14 @@ public class ckasir_menu {
                 Logger.getLogger(ckasir_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
-                new ckasir_datakas(modell, menuu);
+                new ckasir_laporankas(modell, menuu);
             } catch (SQLException ex) {
                 Logger.getLogger(ckasir_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-       public class tagihanListener implements ActionListener {
+
+    public class tagihanListener implements ActionListener {
 
         public tagihanListener() {
 
@@ -93,28 +96,10 @@ public class ckasir_menu {
                 new ckasir_tagihan(modell, menuu);
             } catch (SQLException ex) {
                 Logger.getLogger(ckasir_menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-       
-              public class pelangganListener implements ActionListener {
-
-        public pelangganListener() {
-
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                modell = new model_kasir();
-            } catch (SQLException ex) {
-                Logger.getLogger(ckasir_menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                new ckasir_pelanggan(modell, menuu);
-            } catch (SQLException ex) {
+            } catch (ParseException ex) {
                 Logger.getLogger(ckasir_menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
+
 }

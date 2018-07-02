@@ -16,44 +16,49 @@ import model.model_karyawan;
 import model.model_kasir;
 import model.model_login;
 import model.model_pemilik;
-import viewKasir.login;
-
+import view.login;
 
 /**
  *
  * @author JUNITA
  */
 public class user {
+
     private login loginn = new login();
     private model_login modelLogin;
     private static String username;
     private static String id;
     private koneksi con;
- 
-public user(login loginn, model_login modelLogin) throws SQLException {
+
+    public user(login loginn, model_login modelLogin) throws SQLException {
         this.loginn = loginn;
         this.modelLogin = modelLogin;
         loginn.setVisible(true);
         loginn.loginListener(new LoginListener());
         loginn.resetListener(new resetListener());
     }
+
     private class resetListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        loginn.setUsername("");
-        loginn.setPassword("");
+            loginn.setUsername("");
+            loginn.setPassword("");
         }
     }
+
     public static void setIdLogin(String id) {
         user.id = id;
     }
+
     public static String getIdLogin() {
         return id;
     }
+
     public static void setUserLogin(String username) {
         user.username = username;
     }
+
     public static String getUserLogin() {
         return username;
     }
@@ -70,19 +75,19 @@ public user(login loginn, model_login modelLogin) throws SQLException {
                     int level = modelLogin.lvlLogin(loginn.getUsername(), loginn.getPassword());
 
                     if (level == 1) {
-                        viewKasir.menu kasir = new viewKasir.menu();
+                        view.menu_kasir kasir = new view.menu_kasir();
                         loginn.dispose();
                         kasir.setVisible(true);
                         model_kasir model = new model_kasir(con);
                         new ckasir_menu(model, kasir);
                     } else if (level == 2) {
-                        viewKaryawan.menu karyawan = new viewKaryawan.menu();                      
-                          loginn.dispose();
+                        view.menu_karyawan karyawan = new view.menu_karyawan();
+                        loginn.dispose();
                         karyawan.setVisible(true);
                         model_karyawan model = new model_karyawan(con);
                         new ckaryawan_menu(model, karyawan);
-                    }else if (level == 3) {
-                        viewPemilik.menu pemilik= new viewPemilik.menu();
+                    } else if (level == 3) {
+                        view.menu_pemilik pemilik = new view.menu_pemilik();
                         loginn.dispose();
                         pemilik.setVisible(true);
                         model_pemilik model = new model_pemilik(con);
@@ -100,7 +105,5 @@ public user(login loginn, model_login modelLogin) throws SQLException {
         }
 
     }
-       
-  
 
 }

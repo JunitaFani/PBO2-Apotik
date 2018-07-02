@@ -23,11 +23,11 @@ public class model_pemilik extends basemodel {
     koneksi con;
     Connection conn;
 
-        public model_pemilik() throws SQLException {
+    public model_pemilik() throws SQLException {
         super();
         con = new koneksi("postgres", "junita123", "Apotik");
     }
-    
+
     public model_pemilik(koneksi con) throws SQLException {
         super();
         this.con = new koneksi("postgres", "junita123", "Apotik");
@@ -58,11 +58,9 @@ public class model_pemilik extends basemodel {
     public DefaultTableModel getTablepegawai() throws SQLException {
         Object[] header = {"Kode Pegawai", "Nama Pegawai", "Jabatan", "Jenis Kelamin", "Tanggal Lahir", "Alamat", "No Telepon", "Username", "Password"};
         DefaultTableModel tableModel = new DefaultTableModel(null, header);
-//        String sql = "SELECT p.kodepegawai, p.namapegawai, l.namajabatan, j.jeniskelamin, p.tgllahir, p.alamat, p.notelp\n" +
-//                  "  FROM public.datapegawai p JOIN public.datajabatan l ON p.id_jabatan = l.id_jabatan JOIN public.jeniskelamin j ON p.id_jeniskelamin = j.id_jeniskelamin;";
         String sql = "SELECT p.kodepegawai, p.namapegawai, l.level, j.jeniskelamin, p.tgllahir, p.alamat, p.notelp, usernamee, passwordd\n"
                 + "  FROM public.datapegawai p JOIN public.tb_level l ON p.idlevel = l.idlevel \n"
-                + "JOIN public.jeniskelamin j ON p.id_jeniskelamin = j.id_jeniskelamin;";
+                + "JOIN public.jeniskelamin j ON p.id_jeniskelamin = j.id_jeniskelamin order by p.kodepegawai asc;";
         System.out.println(sql);
 
         for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
@@ -78,7 +76,7 @@ public class model_pemilik extends basemodel {
         }
         return tableModel;
     }
- 
+
     public String[] combojabatan() throws SQLException {
         String query = "SELECT level FROM public.tb_level";
         String db = "Apotik";
@@ -121,5 +119,28 @@ public class model_pemilik extends basemodel {
             a++;
         }
         return jeniskelamin;
+    }
+
+    //blm
+    public DefaultTableModel getTableModelcari(String query) throws SQLException {
+        Object[] header = {"id_pemesanan", "Tujuan", "Penjemputan", "Tanggal Berangkat", "Jenis Transport", "Lama Tour", "nama Pemesan"};
+        DefaultTableModel tableModel = new DefaultTableModel(null, header);
+
+        String sql = "SELECT p.id_pemesanan, t.nama_kota, p.penjemputan, p.tglberangkat, ts.jenis_transport, \n"
+                + "       p.lama, a.nama_pelanggan\n"
+                + "  FROM public.\"Pemesanan\" p join tujuan t on p.id_kota = t.id_kota join transport ts on p.id_transport = ts.id_transport join akun a on p.id_akun = a.id_akun where p.tglberangkat =" + query;
+        System.out.println(sql);
+        for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+            tableModel.removeRow(i);
+        }
+        ResultSet rs = con.getResult(sql);
+        while (rs.next()) {
+            String kolom[] = new String[7];
+            for (int i = 0; i < kolom.length; i++) {
+                kolom[i] = rs.getString(i + 1);
+            }
+            tableModel.addRow(kolom);
+        }
+        return tableModel;
     }
 }

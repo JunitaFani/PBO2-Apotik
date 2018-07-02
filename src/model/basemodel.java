@@ -40,7 +40,6 @@ public abstract class basemodel {
         }
     }
 
-
     public boolean delete(String query) throws SQLException {
         try {
             con.execute(query);
@@ -55,5 +54,5 @@ public abstract class basemodel {
     protected abstract boolean perbarui(String query) throws SQLException;
 
     protected abstract boolean hapus(String query) throws SQLException;
-    
+
 }

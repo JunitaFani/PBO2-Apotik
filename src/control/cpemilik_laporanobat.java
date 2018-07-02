@@ -7,21 +7,19 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import model.model_pemilik;
-import viewPemilik.menu;
+import view.menu_pemilik;
 
 /**
  *
  * @author JUNITA
  */
-public class cpemilik_laporanobat extends cpemilik_menu{
-     private menu menuu;
+public class cpemilik_laporanobat extends cpemilik_menu {
+
+    private menu_pemilik menuu;
     private model_pemilik modell;
     String username;
     private int kodeobat;
@@ -33,7 +31,7 @@ public class cpemilik_laporanobat extends cpemilik_menu{
     private int hargasatuan;
     private int hargabox;
 
-    public cpemilik_laporanobat(model_pemilik modell, menu menuu) throws SQLException {
+    public cpemilik_laporanobat(model_pemilik modell, menu_pemilik menuu) throws SQLException {
         super(modell, menuu);
         this.menuu = menuu;
         this.modell = modell;
@@ -45,11 +43,23 @@ public class cpemilik_laporanobat extends cpemilik_menu{
 //        menuu.setTabel(modell.getTableObatUmum());
 //        menuu.tabelListener(new getTabelObatUmum());
         menuu.laporanObatListener(new laporanObatListener());
-
+        menuu.carilistener(new btnCari());
         menuu.kembaliMenu3().addActionListener(new kembaliMenu());
 //        menuu.SearchObatUmum(new SearchObatUmum());
 //        menuu.segarkanListener(new kembaliListener());
 
+    }
+
+    private class btnCari implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                menuu.setTabel(modell.getTableModelcari("'" + menuu.GetTanggal() + "'"));
+            } catch (SQLException ex) {
+                Logger.getLogger(cpemilik_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     private class kembaliMenu implements ActionListener {
@@ -105,7 +115,6 @@ public class cpemilik_laporanobat extends cpemilik_menu{
 //        }
 //
 //    }
-
     private class laporanObatListener implements ActionListener {
 
         public laporanObatListener() {
@@ -129,7 +138,6 @@ public class cpemilik_laporanobat extends cpemilik_menu{
 //            }
 //        }
 //    }
-
 //    private class segarkanListener implements ActionListener {
 //
 //        @Override
@@ -141,5 +149,4 @@ public class cpemilik_laporanobat extends cpemilik_menu{
 //            }
 //        }
 //    }
-
 }
