@@ -21,24 +21,15 @@ public class ckasir_laporankas extends ckasir_menu {
 
     private menu_kasir menuu;
     private model_kasir modell;
-    private String tgldaftar;
-    private int kodepelanggan;
-    private int jeniskelamin;
-    private String namapelanggan;
-    private String tgllahir;
-    private String alamat;
-    private String notelpon;
 
     public ckasir_laporankas(model_kasir modell, menu_kasir menuu) throws SQLException {
         super(modell, menuu);
         this.menuu = menuu;
         this.modell = modell;
-        menuu.showCard("datakas");
-//        menuu.setTabelpelanggan(modell.getTablepelanggan());
-//        menuu.tabelpelanggan(new tabelpelanggan());
+        menuu.showCard("laporankas");
+        menuu.setTabel1(modell.getTableModelLaporan());
         menuu.kembaliMenu5().addActionListener(new kembaliMenu());
-//        menuu.SearchObatUmum(new SearchPelanggan());
-//        menuu.segarkanListener(new segarkanListener());
+        menuu.segarkan2Listener(new segarkanListener());
         menuu.carilistener(new btnCari());
     }
 
@@ -59,75 +50,22 @@ public class ckasir_laporankas extends ckasir_menu {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                menuu.setTabel(modell.getTableModelcari("'" + menuu.GetTanggal() + "'"));
+                menuu.setTabel1(modell.getTableModelcarilaporan("'" + menuu.GetTanggal() + "'"));
             } catch (SQLException ex) {
                 Logger.getLogger(ckasir_laporankas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
-//    private class tabelpelanggan implements MouseListener {
-//
-//        public tabelpelanggan() {
-//        }
-//
-//        @Override
-//        public void mouseClicked(MouseEvent e) {
-//            DefaultTableModel model = (DefaultTableModel) menuu.gettabelpelanggan().getModel();
-//            menuu.gettabelpelanggan().setEnabled(false);
-//            kodepelanggan = Integer.parseInt(model.getValueAt(menuu.getBaristabelpelanggan(), 0).toString());
-//            tgldaftar = model.getValueAt(menuu.getBaristabelpelanggan(), 1).toString();
-//            namapelanggan = model.getValueAt(menuu.getBaristabelpelanggan(), 2).toString();
-//            String getjeniskelamin = model.getValueAt(menuu.getBaristabelpelanggan(), 3).toString();
-//            tgllahir = model.getValueAt(menuu.getBaristabelpelanggan(), 4).toString();
-//            alamat = model.getValueAt(menuu.getBaristabelpelanggan(), 5).toString();
-//            notelpon = model.getValueAt(menuu.getBaristabelpelanggan(), 6).toString();
-//
-//            System.out.println("getTabelPegawai" + kodepelanggan);
-//
-//            menuu.gettabelpelanggan().setEnabled(false);
-//        }
-//
-//        @Override
-//        public void mouseEntered(MouseEvent e) {
-//        }
-//
-//        @Override
-//        public void mousePressed(MouseEvent e) {
-//        }
-//
-//        @Override
-//        public void mouseReleased(MouseEvent e) {
-//        }
-//
-//        @Override
-//        public void mouseExited(MouseEvent e) {
-//        }
-//
-//    }
-//
-//    private class SearchPelanggan implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//
-//            try {
-//                menuu.setTabelpelanggan(modell.getTablepelanggancari("'" + menuu.gettxtsearch() + "'"));
-//            } catch (SQLException ex) {
-//                Logger.getLogger(ckaryawan_laporanpelanggan.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
-//
-//    private class segarkanListener implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            try {
-//                menuu.setTabelpelanggan(modell.getTablepelanggan());
-//            } catch (SQLException ex) {
-//                Logger.getLogger(ckaryawan_laporanpelanggan.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
+    private class segarkanListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                menuu.setTabel1(modell.getTableModelLaporan());
+            } catch (SQLException ex) {
+                Logger.getLogger(ckasir_laporankas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

@@ -25,14 +25,6 @@ public class ckaryawan_laporanobat extends ckaryawan_menu {
     private menu_karyawan menuu;
     private model_karyawan modell;
     String username;
-    private int kodeobat;
-    private String namaobat;
-    private int satuan;
-    private int isi;
-    private int stok;
-    private int hargabeli;
-    private int hargasatuan;
-    private int hargabox;
 
     public ckaryawan_laporanobat(model_karyawan modell, menu_karyawan menuu) throws SQLException {
         super(modell, menuu);
@@ -41,13 +33,11 @@ public class ckaryawan_laporanobat extends ckaryawan_menu {
 
         menuu.setVisible(true);
         menuu.showCard("laporanObat");
-//        menuu.setTabel(modell.getTableObatUmum());
-//        menuu.tabelListener(new getTabelObatUmum());
+        menuu.setTabel1(modell.getTableModelLaporanobat());
         menuu.laporanObatListener(new laporanObatListener());
-        menuu.carilistener(new btnCari());
+        menuu.carilistener1(new btnCari());
         menuu.kembaliMenu3().addActionListener(new kembaliMenu());
-//        menuu.SearchObatUmum(new SearchObatUmum());
-//        menuu.segarkanListener(new kembaliListener());
+        menuu.segarkanlistener2(new segarkanListener());
 
     }
 
@@ -68,53 +58,11 @@ public class ckaryawan_laporanobat extends ckaryawan_menu {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                menuu.setTabel(modell.getTableModelcari("'" + menuu.GetTanggal() + "'"));
+                menuu.setTabel1(modell.getTableModelcarilaporanobat("'" + menuu.GetTanggal() + "'"));
             } catch (SQLException ex) {
                 Logger.getLogger(ckaryawan_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-
-    private class getTabelObat implements MouseListener {
-
-        public getTabelObat() {
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-
-            DefaultTableModel model = (DefaultTableModel) menuu.getTabelObatUmum().getModel();
-            menuu.getTabelObatUmum().setEnabled(false);
-            kodeobat = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 0).toString());
-            namaobat = model.getValueAt(menuu.getBarisObatUmum(), 1).toString();
-            String getsatuan = model.getValueAt(menuu.getBarisObatUmum(), 2).toString();
-            isi = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 3).toString());
-            stok = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 4).toString());
-            hargabeli = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 5).toString());
-            hargasatuan = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 6).toString());
-            hargabox = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 7).toString());
-
-            System.out.println("getTabelObatUmum" + kodeobat);
-
-            menuu.getTabelObatUmum().setEnabled(false);
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-        }
-
     }
 
     private class laporanObatListener implements ActionListener {
@@ -124,17 +72,13 @@ public class ckaryawan_laporanobat extends ckaryawan_menu {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            menuu.showCard("laporanObat");
-        }
-    }
-
-    private class SearchObatUmum implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
+                       try {
+                modell = new model_karyawan();
+            } catch (SQLException ex) {
+                Logger.getLogger(ckaryawan_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
+            }
             try {
-                menuu.setTabel(modell.getTableObatUmumCari("'" + menuu.gettxtsearch1() + "'"));
+                new ckaryawan_laporanobat(modell, menuu);
             } catch (SQLException ex) {
                 Logger.getLogger(ckaryawan_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -146,7 +90,7 @@ public class ckaryawan_laporanobat extends ckaryawan_menu {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                menuu.setTabel(modell.getTableObatUmum());
+                menuu.setTabel1(modell.getTableModelLaporanobat());
             } catch (SQLException ex) {
                 Logger.getLogger(ckaryawan_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
             }

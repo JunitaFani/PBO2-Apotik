@@ -121,21 +121,91 @@ public class model_pemilik extends basemodel {
         return jeniskelamin;
     }
 
-    //blm
-    public DefaultTableModel getTableModelcari(String query) throws SQLException {
-        Object[] header = {"id_pemesanan", "Tujuan", "Penjemputan", "Tanggal Berangkat", "Jenis Transport", "Lama Tour", "nama Pemesan"};
+    public DefaultTableModel getTableModelcarilaporan(String query) throws SQLException {
+        Object[] header = {"Id Tagihan", "Tanggal", "Id pegawai", "Id Obat", "Nama Obat", "Total Harga"};
         DefaultTableModel tableModel = new DefaultTableModel(null, header);
 
-        String sql = "SELECT p.id_pemesanan, t.nama_kota, p.penjemputan, p.tglberangkat, ts.jenis_transport, \n"
-                + "       p.lama, a.nama_pelanggan\n"
-                + "  FROM public.\"Pemesanan\" p join tujuan t on p.id_kota = t.id_kota join transport ts on p.id_transport = ts.id_transport join akun a on p.id_akun = a.id_akun where p.tglberangkat =" + query;
+        String sql = "SELECT ps.kodetagihan, ps.tanggal, o.kodepegawai, pd.id_obat, pd.namaobat, dps.jumlah,(dps.harga * dps.jumlah) as total \n"
+                + "FROM public.datatagihan ps join public.detail_tagihan dps on dps.kodetagihan = ps.kodetagihan \n"
+                + "join public.dataobat pd on dps.id_obat = pd.id_obat join public.datapegawai o on ps.kodepegawai = o.kodepegawai \n"
+                + " where ps.tanggal = " + query;
+
         System.out.println(sql);
         for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
             tableModel.removeRow(i);
         }
         ResultSet rs = con.getResult(sql);
         while (rs.next()) {
-            String kolom[] = new String[7];
+            String kolom[] = new String[6];
+            for (int i = 0; i < kolom.length; i++) {
+                kolom[i] = rs.getString(i + 1);
+            }
+            tableModel.addRow(kolom);
+        }
+        return tableModel;
+    }
+
+    public DefaultTableModel getTableModelLaporan() throws SQLException {
+        Object[] header = {"Id Tagihan", "Tanggal", "Id pegawai", "Id Obat", "Nama Obat", "Total Harga"};
+        DefaultTableModel tableModel = new DefaultTableModel(null, header);
+
+        String sql = "SELECT ps.kodetagihan, ps.tanggal, o.kodepegawai, pd.id_obat, pd.namaobat, dps.jumlah,(dps.harga * dps.jumlah) as total \n"
+                + "FROM public.datatagihan ps join public.detail_tagihan dps on dps.kodetagihan = ps.kodetagihan join public.dataobat pd on dps.id_obat = pd.id_obat \n"
+                + "join public.datapegawai o on ps.kodepegawai = o.kodepegawai ORDER BY kodetagihan ASC;";
+        System.out.println(sql);
+
+        for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+            tableModel.removeRow(i);
+        }
+        ResultSet rs = con.getResult(sql);
+        while (rs.next()) {
+            String kolom[] = new String[6];
+            for (int i = 0; i < kolom.length; i++) {
+                kolom[i] = rs.getString(i + 1);
+            }
+            tableModel.addRow(kolom);
+        }
+        return tableModel;
+    }
+    
+    public DefaultTableModel getTableModelcarilaporanobat(String query) throws SQLException {
+        Object[] header = {"Id Tagihan", "Tanggal",  "Id Obat", "Nama Obat", "Jumlah", "Harga"};
+        DefaultTableModel tableModel = new DefaultTableModel(null, header);
+
+        String sql = "SELECT ps.kodetagihan, ps.tanggal, pd.id_obat, pd.namaobat, dps.jumlah, dps.harga\n"
+                + "FROM public.datatagihan ps join public.detail_tagihan dps on dps.kodetagihan = ps.kodetagihan \n"
+                + "join public.dataobat pd on dps.id_obat = pd.id_obat\n"
+                + " where ps.tanggal = " + query;
+
+        System.out.println(sql);
+        for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+            tableModel.removeRow(i);
+        }
+        ResultSet rs = con.getResult(sql);
+        while (rs.next()) {
+            String kolom[] = new String[6];
+            for (int i = 0; i < kolom.length; i++) {
+                kolom[i] = rs.getString(i + 1);
+            }
+            tableModel.addRow(kolom);
+        }
+        return tableModel;
+    }
+
+    public DefaultTableModel getTableModelLaporanobat() throws SQLException {
+        Object[] header = {"Id Tagihan", "Tanggal",  "Id Obat", "Nama Obat", "Jumlah", "Harga"};
+        DefaultTableModel tableModel = new DefaultTableModel(null, header);
+
+        String sql = "SELECT ps.kodetagihan, ps.tanggal, pd.id_obat, pd.namaobat, dps.jumlah,dps.harga\n"
+                + "FROM public.datatagihan ps join public.detail_tagihan dps on dps.kodetagihan = ps.kodetagihan join public.dataobat pd on dps.id_obat = pd.id_obat ORDER BY kodetagihan ASC;";
+        System.out.println(sql);
+
+        for (int i = tableModel.getRowCount() - 1; i >= 0; i--) {
+            tableModel.removeRow(i);
+        }
+        ResultSet rs = con.getResult(sql);
+        while (rs.next()) {
+            String kolom[] = new String[6];
             for (int i = 0; i < kolom.length; i++) {
                 kolom[i] = rs.getString(i + 1);
             }

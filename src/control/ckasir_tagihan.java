@@ -63,13 +63,11 @@ public class ckasir_tagihan {
         public void actionPerformed(ActionEvent e) {
             obat o = listobat.get(menuu.getobatSelected());
             menuu.addItem(o.getnamaobat(), o.getid_obat() + "", menuu.getJumlah2(), o.getHarga());
-//            menuu.plusTotal2(menuu.getJumlah2() * o.getHarga());
 
             plustotal = menuu.getJumlah2() * o.getHarga();
             if (menuu.getTotalBiaya().equalsIgnoreCase("")) {
                 double ttl = 0;
                 double ttlx = ttl + plustotal;
-//         plustotal += plustottotalx = plustotalal;
                 totalx = String.valueOf(ttlx);
                 menuu.setTotal3(totalx);
             } else {
@@ -116,11 +114,12 @@ public class ckasir_tagihan {
                     list.add(item);
                 }
                 try {
-                    int bayar = Integer.parseInt(menuu.getBayar());
+                    double bayar = Double.parseDouble(menuu.getBayar());
                     double total = Double.parseDouble(menuu.getTotalBiaya());
                     double kembalian = bayar - total;
                     menuu.setKembalian(String.valueOf(kembalian));
-                    modell.saveTransaksi(menuu.getNamaPelanggan(), list);
+                    modell.saveTransaksi(menuu.getNamaPelanggan(), menuu.getObatSelected(),Double.parseDouble(menuu.gettotal().toString()),list);
+                    System.out.println(""+modell.saveTransaksi(menuu.getNamaPelanggan(), menuu.getObatSelected(),Double.parseDouble(menuu.getTotalBiaya().toString()),list));
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

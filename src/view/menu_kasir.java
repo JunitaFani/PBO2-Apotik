@@ -32,7 +32,7 @@ import model.obat;
  */
 public class menu_kasir extends javax.swing.JFrame {
 
-    private Object[] header = {"kode obat", "Nama obat", "Jumlah", "Harga"};
+    private Object[] header = {"kode obat", "Nama obat", "Harga", "Jumlah"};
     DefaultTableModel tableModel = new DefaultTableModel(null, header);
 
     public menu_kasir() {
@@ -376,7 +376,7 @@ public class menu_kasir extends javax.swing.JFrame {
         dataTagihan.add(bayar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(969, 496, 226, 24));
 
         total3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        dataTagihan.add(total3, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 456, 226, 24));
+        dataTagihan.add(total3, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 460, 226, 24));
 
         kembali4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dataTagihan.add(kembali4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 535, 226, 24));
@@ -481,6 +481,10 @@ public class menu_kasir extends javax.swing.JFrame {
     public void SearchObatUmum(ActionListener l) {
         this.search1.addActionListener(l);
     }
+    
+        public void SearchObatUmum1(ActionListener l) {
+        this.txt1.addActionListener(l);
+    }
 
     public JTable getTabelObatUmum() {
         return tabelUmum;
@@ -502,6 +506,10 @@ public class menu_kasir extends javax.swing.JFrame {
 
     public void setTabel(DefaultTableModel tabel) {
         this.tabelUmum.setModel(tabel);
+    }
+    
+        public void setTabel1(DefaultTableModel tabel) {
+        this.tabelkas.setModel(tabel);
     }
 
     public void setTabeltagihan(DefaultTableModel tabel) {
@@ -542,6 +550,10 @@ public class menu_kasir extends javax.swing.JFrame {
 
     public JButton kembaliMenu5() {
         return menu4;
+    }
+    
+        public void segarkan2Listener(ActionListener l) {
+        this.segarkan.addActionListener(l);
     }
 
     public JButton kembaliMenu3() {

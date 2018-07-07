@@ -62,16 +62,16 @@ public class menu_karyawan extends javax.swing.JFrame {
         logout = new javax.swing.JButton();
         isiMenu = new javax.swing.JPanel();
         dataObat = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        search1 = new javax.swing.JButton();
         menu2 = new javax.swing.JButton();
-        txt1 = new javax.swing.JTextField();
         tambah = new javax.swing.JButton();
         ubah = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
         segarkan2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelUmum = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txt1 = new javax.swing.JTextField();
+        search1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabel2 = new javax.swing.JTable();
@@ -139,22 +139,8 @@ public class menu_karyawan extends javax.swing.JFrame {
 
         dataObat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Nama Obat");
-        dataObat.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 25, 220, 30));
-
-        search1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/cari.png"))); // NOI18N
-        search1.setBorder(null);
-        search1.setBorderPainted(false);
-        search1.setContentAreaFilled(false);
-        dataObat.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 18, 62, 40));
-
         menu2.setText("menu");
         dataObat.add(menu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 90, 30));
-
-        txt1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txt1.setBorder(null);
-        dataObat.add(txt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 270, 20));
 
         tambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/tambah.png"))); // NOI18N
         tambah.setBorder(null);
@@ -235,7 +221,21 @@ public class menu_karyawan extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabelUmum);
 
-        dataObat.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1290, 410));
+        dataObat.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 1290, 410));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Nama Obat");
+        dataObat.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 25, 220, 30));
+
+        txt1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt1.setBorder(null);
+        dataObat.add(txt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 270, 20));
+
+        search1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/cari.png"))); // NOI18N
+        search1.setBorder(null);
+        search1.setBorderPainted(false);
+        search1.setContentAreaFilled(false);
+        dataObat.add(search1, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 18, 62, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dataObat/layer obat.png"))); // NOI18N
         dataObat.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1349, 540));
@@ -492,10 +492,6 @@ public class menu_karyawan extends javax.swing.JFrame {
         return menu2;
     }
 
-    public void SearchObatUmum(ActionListener l) {
-        this.search1.addActionListener(l);
-    }
-
     public JTable getTabelObatUmum() {
         return tabelUmum;
     }
@@ -506,6 +502,18 @@ public class menu_karyawan extends javax.swing.JFrame {
 
     public void setTabel(DefaultTableModel tabel) {
         this.tabelUmum.setModel(tabel);
+    }
+    
+        public void setTabel1(DefaultTableModel tabel) {
+        this.laporanobat.setModel(tabel);
+    }
+        
+            public void SearchObatUmum(ActionListener l) {
+        this.search1.addActionListener(l);
+    }
+            
+                public String gettxtsearch1() {
+        return txt1.getText();
     }
 
     public void tabelListener(MouseListener m) {
@@ -520,14 +528,6 @@ public class menu_karyawan extends javax.swing.JFrame {
         this.sessionkode.setText(sessionAdmin);
     }
 
-    public JTextField settxtsearch1() {
-        return txt1;
-    }
-
-    public String gettxtsearch1() {
-        return txt1.getText();
-    }
-
     public void TambahObatUmumListener(ActionListener e) {
         this.tambah.addActionListener(e);
     }
@@ -538,10 +538,6 @@ public class menu_karyawan extends javax.swing.JFrame {
 
     public void HapusObatUmumListener(ActionListener e) {
         this.hapus.addActionListener(e);
-    }
-
-    public void searchListener(ActionListener e) {
-        this.search1.addActionListener(e);
     }
 
     public void segarkan2Listener(ActionListener l) {
@@ -558,10 +554,6 @@ public class menu_karyawan extends javax.swing.JFrame {
 
     public JButton getHapus() {
         return hapus;
-    }
-
-    public JButton getSearch() {
-        return search1;
     }
 
     public void buttonUbah(boolean status) {
@@ -588,6 +580,10 @@ public class menu_karyawan extends javax.swing.JFrame {
 
     public String GetTanggal() {
         return Tanggal;
+    }
+    
+        public void carilistener1(ActionListener l) {
+        this.cari.addActionListener(l);
     }
 
     //tambah obat 
@@ -699,6 +695,18 @@ public class menu_karyawan extends javax.swing.JFrame {
 
     public JButton kembaliMenu3() {
         return menulap;
+    }
+
+    public JButton kembaliMenu7() {
+        return menu2;
+    }
+
+    public void segarkanlistener(ActionListener l) {
+        this.segarkan2.addActionListener(l);
+    }
+    
+       public void segarkanlistener2(ActionListener l) {
+        this.segarkan3.addActionListener(l);
     }
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed

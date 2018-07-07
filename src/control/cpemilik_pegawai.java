@@ -61,7 +61,7 @@ public class cpemilik_pegawai {
         menuu.showCard("datapegawai");
         menuu.batal().addActionListener(new batalPegawai());
         menuu.kembaliMenu().addActionListener(new kembaliMenu());
-        //obat resep
+
     }
 
     private class kembaliMenu implements ActionListener {
@@ -176,7 +176,6 @@ public class cpemilik_pegawai {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("bisakok");
-//bagas
             try {
                 if (menuu.getNamaPegawai().equalsIgnoreCase("")
                         || menuu.getTanggallahir().equalsIgnoreCase("")
@@ -192,7 +191,7 @@ public class cpemilik_pegawai {
                     } else if (menuu.getJabatan().getSelectedItem().toString().equalsIgnoreCase("kasir")) {
                         jabatan = 2;
                     } else if (menuu.getJabatan().getSelectedItem().toString().equalsIgnoreCase("pemilik")) {
-                        jabatan = 2;
+                        jabatan = 3;
                     } else {
                         jabatan = 4;
                     }
@@ -210,8 +209,8 @@ public class cpemilik_pegawai {
                             + menuu.getAlamat() + "', '" + menuu.getNotelp() + "', '" + menuu.getUser() + "', '" + menuu.getPass() + "')");
                     menuu.setTabel(modell.getTablepegawai());
                     JOptionPane.showMessageDialog(menuu, "data berhasil disimpan");
-                    resetpegawai();
                     menuu.showCard("datapegawai");
+                    resetpegawai();
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(cpemilik_pegawai.class.getName()).log(Level.SEVERE, null, ex);
@@ -261,7 +260,6 @@ public class cpemilik_pegawai {
                 menuu.getJeniskelamin().setSelectedIndex(jeniskelamin);
                 menuu.setUserr().setText(user);
                 menuu.setPassw().setText(pass);
-//                menuu.tanggalLahir().setDateFormatString(tgllahir);
                 try {
                     Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tgllahir);
                     menuu.tanggalLahir().setDate(date);
@@ -326,12 +324,12 @@ public class cpemilik_pegawai {
 
                     menuu.setTabel(modell.getTablepegawai());
                     JOptionPane.showMessageDialog(menuu, "data berhasil disimpan");
-                    resetpegawai();
                     menuu.showCard("datapegawai");
                     menuu.gettabelpegawai().clearSelection();
                     menuu.gettabelpegawai().setEnabled(true);
                     menuu.ubahSimpanpegawai().setVisible(false);
                     menuu.simpanpegawai().setVisible(true);
+                    resetpegawai();
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(cpemilik_pegawai.class.getName()).log(Level.SEVERE, null, ex);

@@ -185,7 +185,7 @@ public class ckaryawan_obat extends ckaryawan_menu {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("bisakok");
-//bagas
+
             try {
                 if (menuu.getNamaObat().equalsIgnoreCase("")
                         || menuu.getIsi().equalsIgnoreCase("")

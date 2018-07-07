@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.model_pemilik;
 import view.menu_pemilik;
-
+import control.ckaryawan_obat;
 /**
  *
  * @author JUNITA
@@ -22,14 +22,6 @@ public class cpemilik_laporanobat extends cpemilik_menu {
     private menu_pemilik menuu;
     private model_pemilik modell;
     String username;
-    private int kodeobat;
-    private String namaobat;
-    private int satuan;
-    private int isi;
-    private int stok;
-    private int hargabeli;
-    private int hargasatuan;
-    private int hargabox;
 
     public cpemilik_laporanobat(model_pemilik modell, menu_pemilik menuu) throws SQLException {
         super(modell, menuu);
@@ -38,24 +30,26 @@ public class cpemilik_laporanobat extends cpemilik_menu {
 
         menuu.setVisible(true);
         menuu.showCard("laporanObat");
-        //data obat
-        //obat umum
-//        menuu.setTabel(modell.getTableObatUmum());
-//        menuu.tabelListener(new getTabelObatUmum());
+        menuu.setTabel3(modell.getTableModelLaporanobat());
         menuu.laporanObatListener(new laporanObatListener());
         menuu.carilistener(new btnCari());
         menuu.kembaliMenu3().addActionListener(new kembaliMenu());
-//        menuu.SearchObatUmum(new SearchObatUmum());
-//        menuu.segarkanListener(new kembaliListener());
+        menuu.segarkanlistener(new segarkanListener());
 
     }
-
+    String tanggal;
+    public String GetTanggal() {
+        return tanggal;
+    }
+    
+    
+    
     private class btnCari implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                menuu.setTabel(modell.getTableModelcari("'" + menuu.GetTanggal() + "'"));
+                menuu.setTabel3(modell.getTableModelcarilaporanobat("'" + menuu.GetTanggal() + "'"));
             } catch (SQLException ex) {
                 Logger.getLogger(cpemilik_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -73,48 +67,7 @@ public class cpemilik_laporanobat extends cpemilik_menu {
         }
 
     }
-
-//    private class getTabelObatUmum implements MouseListener {
-//
-//        public getTabelObatUmum() {
-//        }
-//
-//        @Override
-//        public void mouseClicked(MouseEvent e) {
-//
-//            DefaultTableModel model = (DefaultTableModel) menuu.getTabelObatUmum().getModel();
-//            menuu.getTabelObatUmum().setEnabled(false);
-//            kodeobat = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 0).toString());
-//            namaobat = model.getValueAt(menuu.getBarisObatUmum(), 1).toString();
-//            String getsatuan = model.getValueAt(menuu.getBarisObatUmum(), 2).toString();
-//            isi = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 3).toString());
-//            stok = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 4).toString());
-//            hargabeli = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 5).toString());
-//            hargasatuan = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 6).toString());
-//            hargabox = Integer.parseInt(model.getValueAt(menuu.getBarisObatUmum(), 7).toString());
-//
-//            System.out.println("getTabelObatUmum" + kodeobat);
-//
-//            menuu.getTabelObatUmum().setEnabled(false);
-//        }
-//
-//        @Override
-//        public void mouseEntered(MouseEvent e) {
-//        }
-//
-//        @Override
-//        public void mousePressed(MouseEvent e) {
-//        }
-//
-//        @Override
-//        public void mouseReleased(MouseEvent e) {
-//        }
-//
-//        @Override
-//        public void mouseExited(MouseEvent e) {
-//        }
-//
-//    }
+ 
     private class laporanObatListener implements ActionListener {
 
         public laporanObatListener() {
@@ -122,31 +75,29 @@ public class cpemilik_laporanobat extends cpemilik_menu {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            menuu.showCard("laporanObat");
+            try {
+                modell = new model_pemilik();
+            } catch (SQLException ex) {
+                Logger.getLogger(cpemilik_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                new cpemilik_laporanobat(modell, menuu);
+            } catch (SQLException ex) {
+                Logger.getLogger(cpemilik_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-//    private class SearchObatUmum implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//
-//            try {
-//                menuu.setTabel(modell.getTableObatUmumCari("'" + menuu.gettxtsearch1() + "'"));
-//            } catch (SQLException ex) {
-//                Logger.getLogger(ckaryawan_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
-//    private class segarkanListener implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            try {
-//                menuu.setTabel(modell.getTableObatUmum());
-//            } catch (SQLException ex) {
-//                Logger.getLogger(ckaryawan_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
+
+    private class segarkanListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                menuu.setTabel3(modell.getTableModelLaporan());
+            } catch (SQLException ex) {
+                Logger.getLogger(ckaryawan_laporanobat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }
